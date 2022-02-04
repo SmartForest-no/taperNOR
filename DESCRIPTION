@@ -1,0 +1,13 @@
+Package: taperNO
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Johannes Rahlf, Endre Hofstad Hansen
+Maintainer: Johannes Rahlf <johannes.rahlf@nibio.no>
+Description: Taper models for Norway
+    for the main tree species spruce, pine and birch.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+    TapeR
