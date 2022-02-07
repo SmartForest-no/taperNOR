@@ -1,19 +1,23 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Install Package:           'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+#' Taper model for spruce, pine, and birch for Norway
+#'
+#' The taper model is based on Kozak 1988.
+#'
+#' @param h heights where to return diameters
+#' @param dbh diameter at breast height in cm
+#' @param h_top tree height in m
+#' @param sp species
+#' @return Timber volume in m.
+#' @examples
+#' taperNO(h=1:10,dbh=20,h_top=30,sp="pine")
+
 
 taperNO <- function(h,dbh,h_top,sp="spruce"){
+
+
+  if(sum(!c(class(h),class(dbh),class(h_top))%in%c("numeric","integer"))>0){
+    stop("h, dbh, and h_top must be numeric.")
+  }
+
 
   if(as.character(sp)%in%c("spruce","s","gran","g","1")){
     b1 <-  1.0329481
@@ -35,7 +39,7 @@ taperNO <- function(h,dbh,h_top,sp="spruce"){
     b7 <-  0.05112187
     b8 <-  0.07639823
     p  <-  0.5737896
-  }else if (as.character(sp)%in%c("birch","b","bjork","bj",
+  }else if (as.character(sp)%in%c("birch","b","bj\u00f8rk","bjork","bj",
                                   "lauv","l","3")){
     b1 <-  1.0667671
     b2 <-  0.8741271
@@ -65,6 +69,4 @@ taperNO <- function(h,dbh,h_top,sp="spruce"){
 
   return(d)
 }
-
-taperNO(1:10,30,30)
 

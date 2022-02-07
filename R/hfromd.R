@@ -1,25 +1,26 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Install Package:           'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
-
-hd_taperNO<-function(x,h,d,sp){
-  sqrt(mean((d-taperNO(h=h,dbh=x[2],h_top=x[1],sp=sp))^2))
-}
+#' Estimate tree height from diameters
+#'
+#' Estimates tree height from diameters using optimization of the taper function.
+#'
+#' @param d diameters
+#' @param h height of diameters
+#' @param sp species
+#' @param output output from optimization: 'H' outputs the tree height, 'all' result of optim.
+#' @return Timber volume in m.
+#' @examples
+#' volume(20, 30)
+#' volume(c(20,25,30), c(30,25,37))
 
 hfromd<-function(d,h,sp="spruce",output="H"){
 
-  result<-optim(c(50,0.2),hd_taperNO,h=h,d=d,sp=sp)
+  result<-stats::optim(c(50,0.2),
+                function(x,h,d,sp){
+                  sqrt(mean((d-taperNO(h=h,dbh=x[2],h_top=x[1],sp=sp))^2))
+                },
+                h=h,
+                d=d,
+                sp=sp)
+
   if(output=="H") {
     return(result$par[1])
   } else if(output=="all"){

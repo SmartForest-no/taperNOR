@@ -1,17 +1,15 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Install Package:           'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+#' Taper model for spruce, pine, and birch for Norway with dynamic diameter input
+#'
+#' Allows the use of multiple diameters measured at various points along the stem to estimate taper.
+#'
+#' @param Hx height where to return diameters
+#' @param Hm height of measured diameters
+#' @param Dm measured diameters
+#' @param mHt measured tree height
+#' @param sp species
+#' @return Timber volume in m.
+#' @examples
+#'
 
 kublin_no <- function(Hx,Hm,Dm,mHt,sp=1) {
 

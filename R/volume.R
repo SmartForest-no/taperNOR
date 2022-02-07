@@ -1,36 +1,48 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Install Package:           'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+#' Calculate volume
+#'
+#' Calculate volume from taper model by integerating the taper function.
+#'
+#' @param dbh numeric vector of diameter at breast height measurements in cm
+#' @param h_top numeric vector of tree heights in m.
+#' @param sp species
+#' @return Timber volume in m.
+#' @examples
+#' volume(20, 30)
+#' volume(c(20,25,30), c(30,25,37))
 
 
+volume<-function(dbh,h_top,sp="spruce"){
 
-volume<-function(dbh,h_top){
-
-  if(length(dbh)!=length(h_top)) {
-    error("dbh and h_top must have the same length!")
+  if(class(dbh)!="numeric"|class(h_top)!="numeric"){
+    stop("dbh and h_top must be numeric.")
   }
 
-  taper_integr<-unlist(apply( cbind(dbh,h_top),
+  if(length(dbh)!=length(h_top)) {
+    stop("dbh and h_top must have the same length.")
+  }
+
+  if(length(sp)==1) {
+    sp<-rep(sp,length(dbh))
+  } else if (length(sp)!=length(dbh)){
+    stop("sp must be of length 1 of same length as dbh.")
+  }
+
+
+
+  taper_integr<-unlist(apply( data.frame(dbh,h_top,sp),
          MARGIN = 1,
          FUN= function(x){
-           integrate(function(h,dbh,h_top)(taperNO(h,dbh,h_top)/2)^2,
-                     dbh=x[1],
-                     h_top=x[2],
+           stats::integrate(function(h,dbh,h_top,sp)(taperNO(h,dbh,h_top,sp)/2)^2,
+                     dbh=as.numeric(x[1]),
+                     h_top=as.numeric(x[2]),
+                     sp=x[3],
                      lower = 0,
-                     upper = x[2])$value
+                     upper = as.numeric(x[2]))$value
          }
   ))
 
-  return(p*taper_integr)
+
+  return(pi*taper_integr)
 }
+
+
