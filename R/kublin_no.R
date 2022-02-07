@@ -8,8 +8,7 @@
 #' @param mHt measured tree height
 #' @param sp species
 #' @return Timber volume in m.
-#' @examples
-#'
+#' @export
 
 kublin_no <- function(Hx,Hm,Dm,mHt,sp=1) {
 

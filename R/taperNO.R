@@ -9,6 +9,7 @@
 #' @return Timber volume in m.
 #' @examples
 #' taperNO(h=1:10,dbh=20,h_top=30,sp="pine")
+#' @export
 
 
 taperNO <- function(h,dbh,h_top,sp="spruce"){

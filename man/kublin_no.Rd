@@ -23,6 +23,3 @@ Timber volume in m.
 \description{
 Allows the use of multiple diameters measured at various points along the stem to estimate taper.
 }
-\examples{
-
-}

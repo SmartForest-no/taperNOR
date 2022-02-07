@@ -9,6 +9,7 @@
 #' @examples
 #' volume(20, 30)
 #' volume(c(20,25,30), c(30,25,37))
+#' @export
 
 
 volume<-function(dbh,h_top,sp="spruce"){

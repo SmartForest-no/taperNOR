@@ -8,18 +8,20 @@
 #' @param output output from optimization: 'H' outputs the tree height, 'all' result of optim.
 #' @return Timber volume in m.
 #' @examples
-#' volume(20, 30)
-#' volume(c(20,25,30), c(30,25,37))
+#'
+#' hfromd(d=c(39,27),h=c(2,7),sp="birch")
+#' @export
 
 hfromd<-function(d,h,sp="spruce",output="H"){
 
-  result<-stats::optim(c(50,0.2),
-                function(x,h,d,sp){
-                  sqrt(mean((d-taperNO(h=h,dbh=x[2],h_top=x[1],sp=sp))^2))
-                },
-                h=h,
-                d=d,
-                sp=sp)
+  result<-
+    stats::optim(par=c(50,20),
+                 fn= function(x_o,h_o,d_o,sp_o){
+                   sqrt(mean((d_o-taperNO(h=h_o,dbh=x_o[2],h_top=x_o[1],sp=sp_o))^2))
+                 },
+                 h_o=h,
+                 d_o=d,
+                 sp_o=sp)
 
   if(output=="H") {
     return(result$par[1])

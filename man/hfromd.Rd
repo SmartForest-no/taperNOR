@@ -22,6 +22,6 @@ Timber volume in m.
 Estimates tree height from diameters using optimization of the taper function.
 }
 \examples{
-volume(20, 30)
-volume(c(20,25,30), c(30,25,37))
+
+hfromd(d=c(39,27),h=c(2,7),sp="birch")
 }
