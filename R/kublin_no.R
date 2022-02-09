@@ -2,15 +2,16 @@
 #'
 #' Allows the use of multiple diameters measured at various points along the stem to estimate taper.
 #'
-#' @param Hx height where to return diameters
-#' @param Hm height of measured diameters
-#' @param Dm measured diameters
-#' @param mHt measured tree height
+#' @param Hx height where to return diameters (m)
+#' @param Hm height of measured diameters (m)
+#' @param Dm measured diameters (cm)
+#' @param mHt measured tree height (m)
 #' @param sp species
-#' @return Timber volume in m.
+#' @param ... parameters handed over to E_DHx_HmDm_HT.f or E_HDx_HmDm_HT.f
+#' @return When Hx is given: diameters at Hx (cm). When Dx is given: heights where d=Dx (m).
 #' @export
 
-kublin_no <- function(Hx,Hm,Dm,mHt,sp=1) {
+kublin_no <- function(Hx=NULL,Hm,Dm,mHt,sp=1,Dx=NULL,...) {
 
   if(sp==1){
     par_lme<-kublin_par_lme_spruce
@@ -19,6 +20,12 @@ kublin_no <- function(Hx,Hm,Dm,mHt,sp=1) {
   } else if(sp==3){
     par_lme<-kublin_par_lme_spruce
   }
-    TapeR::E_DHx_HmDm_HT.f(Hx = Hx,Hm = Hm,Dm = Dm,mHt,par.lme = par_lme)
+  if(is.null(Hx)&!is.null(Dx)){
+    TapeR::E_HDx_HmDm_HT.f(Dx = Dx,Hm = Hm,Dm = Dm,mHt,par.lme = par_lme,...)
+  } else if ((!is.null(Hx))&is.null(Dx)){
+    TapeR::E_DHx_HmDm_HT.f(Hx = Hx,Hm = Hm,Dm = Dm,mHt,par.lme = par_lme,...)
+  } else {
+    stop("Either Hx or Dx must be given")
+  }
 
 }
