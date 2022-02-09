@@ -2,13 +2,13 @@
 #'
 #' The taper model is based on Kozak 1988.
 #'
-#' @param h heights where to return diameters
-#' @param dbh diameter at breast height in cm
-#' @param h_top tree height in m
-#' @param sp species
-#' @return Timber volume in m.
+#' @param h heights where to return diameters (m)
+#' @param dbh diameter at breast height (cm)
+#' @param h_top tree height (m)
+#' @param sp species ('spruce','pine' or 'birch'; 1:3)
+#' @return diameters at h (cm).
 #' @examples
-#' taperNO(h=1:10,dbh=20,h_top=30,sp="pine")
+#' taperNO(h=1:30,dbh=20,h_top=30,sp="pine")
 #' @export
 
 

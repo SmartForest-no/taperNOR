@@ -2,10 +2,10 @@
 #'
 #' Calculate volume from taper model by integerating the taper function.
 #'
-#' @param dbh numeric vector of diameter at breast height measurements in cm
-#' @param h_top numeric vector of tree heights in m.
+#' @param dbh numeric vector of diameters at breast height (cm).
+#' @param h_top numeric vector of tree heights (m).
 #' @param sp species
-#' @return Timber volume in m.
+#' @return Timber volume (m).
 #' @examples
 #' volume(20, 30)
 #' volume(c(20,25,30), c(30,25,37))
