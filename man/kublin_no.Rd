@@ -4,21 +4,25 @@
 \alias{kublin_no}
 \title{Taper model for spruce, pine, and birch for Norway with dynamic diameter input}
 \usage{
-kublin_no(Hx, Hm, Dm, mHt, sp = 1)
+kublin_no(Hx = NULL, Hm, Dm, mHt, sp = 1, Dx = NULL, ...)
 }
 \arguments{
-\item{Hx}{height where to return diameters}
+\item{Hx}{height where to return diameters (m)}
 
-\item{Hm}{height of measured diameters}
+\item{Hm}{height of measured diameters (m)}
 
-\item{Dm}{measured diameters}
+\item{Dm}{measured diameters (cm)}
 
-\item{mHt}{measured tree height}
+\item{mHt}{measured tree height (m)}
 
 \item{sp}{species}
+
+\item{Dx}{or diameters (cm) for which to return a height}
+
+\item{...}{parameters handed over to E_DHx_HmDm_HT.f or E_HDx_HmDm_HT.f}
 }
 \value{
-Timber volume in m.
+When Hx is given: diameters at Hx (cm). When Dx is given: heights where d=Dx (m).
 }
 \description{
 Allows the use of multiple diameters measured at various points along the stem to estimate taper.

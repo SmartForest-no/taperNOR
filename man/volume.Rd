@@ -7,14 +7,14 @@
 volume(dbh, h_top, sp = "spruce")
 }
 \arguments{
-\item{dbh}{numeric vector of diameter at breast height measurements in cm}
+\item{dbh}{numeric vector of diameters at breast height (cm).}
 
-\item{h_top}{numeric vector of tree heights in m.}
+\item{h_top}{numeric vector of tree heights (m).}
 
 \item{sp}{species}
 }
 \value{
-Timber volume in m.
+Timber volume (m).
 }
 \description{
 Calculate volume from taper model by integerating the taper function.

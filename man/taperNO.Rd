@@ -7,20 +7,20 @@
 taperNO(h, dbh, h_top, sp = "spruce")
 }
 \arguments{
-\item{h}{heights where to return diameters}
+\item{h}{heights where to return diameters (m)}
 
-\item{dbh}{diameter at breast height in cm}
+\item{dbh}{diameter at breast height (cm)}
 
-\item{h_top}{tree height in m}
+\item{h_top}{tree height (m)}
 
-\item{sp}{species}
+\item{sp}{species ('spruce','pine' or 'birch'; 1:3)}
 }
 \value{
-Timber volume in m.
+diameters at h (cm).
 }
 \description{
 The taper model is based on Kozak 1988.
 }
 \examples{
-taperNO(h=1:10,dbh=20,h_top=30,sp="pine")
+taperNO(h=1:30,dbh=20,h_top=30,sp="pine")
 }

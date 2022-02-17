@@ -3,6 +3,7 @@
 #' Allows the use of multiple diameters measured at various points along the stem to estimate taper.
 #'
 #' @param Hx height where to return diameters (m)
+#' @param Dx or diameters (cm) for which to return a height
 #' @param Hm height of measured diameters (m)
 #' @param Dm measured diameters (cm)
 #' @param mHt measured tree height (m)

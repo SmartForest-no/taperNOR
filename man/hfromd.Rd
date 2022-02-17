@@ -4,16 +4,18 @@
 \alias{hfromd}
 \title{Estimate tree height from diameters}
 \usage{
-hfromd(d, h, sp = "spruce", output = "H")
+hfromd(d, h, sp = "spruce", output = "h", grd_search = F)
 }
 \arguments{
-\item{d}{diameters}
+\item{d}{diameters in cm}
 
-\item{h}{height of diameters}
+\item{h}{height of diameter measurements in m}
 
 \item{sp}{species}
 
-\item{output}{output from optimization: 'H' outputs the tree height, 'all' result of optim.}
+\item{output}{output from optimization: 'h' outputs the tree height,'d' diameter at breast height, 'all' result of optim.}
+
+\item{grd_search}{if TRUE optimization is run on a matrix of initial parameters. The result of the best fit is returned. Might give better result at cost of performance.}
 }
 \value{
 Timber volume in m.
