@@ -12,6 +12,7 @@
 #'
 #' hfromd(d=c(39,27),h=c(2,7),sp="birch")
 #' @export
+
 hfromd<-function(d,h,sp="spruce",output="h",grd_search=F){
 
   if(min(h)<=0.5){

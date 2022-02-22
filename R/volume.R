@@ -4,22 +4,43 @@
 #'
 #' @param dbh numeric vector of diameters at breast height (cm).
 #' @param h_top numeric vector of tree heights (m).
+#' @param h_vol_lower,h_vol_upper numeric vectors of heights between stem volume is calculated (m). NA in h_vol_upper is replaced by h_top.
 #' @param sp species
 #' @return Timber volume (m).
 #' @examples
 #' volume(20, 30)
-#' volume(c(20,25,30), c(30,25,37))
+#' volume(dbh=c(20,25,30), h_top=c(30,25,37))
+#' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_lower=seq(0,30,3))
+#' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3))
 #' @export
 
 
-volume<-function(dbh,h_top,sp="spruce"){
+volume<-function(dbh,h_top,h_vol_lower=0,h_vol_upper=NA,sp="spruce"){
 
-  if(class(dbh)!="numeric"|class(h_top)!="numeric"){
-    stop("dbh and h_top must be numeric.")
+  if(class(dbh)!="numeric"|class(h_top)!="numeric"|class(h_vol_lower)!="numeric"){
+    stop("dbh, h_top and h_vol_lower must be numeric.")
   }
 
   if(length(dbh)!=length(h_top)) {
     stop("dbh and h_top must have the same length.")
+  }
+
+  if(length(h_vol_upper)==1) {
+    h_vol_upper<-rep(h_vol_upper,length(dbh))
+  } else if (length(h_vol_upper)!=length(dbh)){
+    stop("h_vol_upper must be of length 1 of same length as dbh.")
+  }
+
+  h_vol_upper[is.na(h_vol_upper)]<-h_top[is.na(h_vol_upper)]
+
+  if(length(h_vol_lower)==1) {
+    h_vol_lower<-rep(h_vol_lower,length(dbh))
+  } else if (length(h_vol_lower)!=length(dbh)){
+    stop("h_vol_lower must be of length 1 of same length as dbh.")
+  }
+
+  if(any(h_vol_lower>h_vol_upper)){
+    stop("h_vol_lower must not be larger than h_vol_upper.")
   }
 
   if(length(sp)==1) {
@@ -30,16 +51,16 @@ volume<-function(dbh,h_top,sp="spruce"){
 
 
 
-  taper_integr<-unlist(apply( data.frame(dbh,h_top,sp),
-         MARGIN = 1,
-         FUN= function(x){
-           stats::integrate(function(h,dbh,h_top,sp)(taperNO(h,dbh,h_top,sp)/2)^2,
-                     dbh=as.numeric(x[1]),
-                     h_top=as.numeric(x[2]),
-                     sp=x[3],
-                     lower = 0,
-                     upper = as.numeric(x[2]))$value
-         }
+  taper_integr<-unlist(apply( data.frame(dbh,h_top,h_vol_lower,h_vol_upper,sp),
+                              MARGIN = 1,
+                              FUN= function(x){
+                                stats::integrate(function(h,dbh,h_top,sp)(taperNO(h,dbh,h_top,sp)/2)^2,
+                                                 dbh=as.numeric(x[1]),
+                                                 h_top=as.numeric(x[2]),
+                                                 sp=x[5],
+                                                 lower = as.numeric(x[3]),
+                                                 upper = as.numeric(x[4]))$value
+                              }
   ))
 
 
