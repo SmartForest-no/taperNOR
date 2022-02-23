@@ -68,7 +68,8 @@ volume<-function(dbh,h_top,h_vol_lower=0,h_vol_upper=NA,sp="spruce"){
   ))
 
 
-  return(pi*taper_integr)
+
+  return(pi*unname(taper_integr))
 }
 
 
