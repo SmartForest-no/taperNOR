@@ -39,7 +39,7 @@ hfromd<-function(d,h,sp="spruce",output="h",grd_search=F){
     st_df$optim<-apply( st_df,1,function(x){try(.hfromd_optim(x,h,d,sp)$value,silent = T)})
     st_df$optim[!grepl("\\d",st_df$optim)]<-NA
     st_df$optim<-as.numeric(st_df$optim)
-    result<-try(.hfromd_optim(st_df[which.min(st_df$optim),1:2]))
+    result<-try(.hfromd_optim(st_df[which.min(st_df$optim),1:2],h,d,sp))
   }
 
   if(class(result)=="try-error") return(.hfromd_optim(st,h,d,sp))
