@@ -19,8 +19,9 @@ taperNO <- function(h,dbh,h_top,sp="spruce"){
     stop("h, dbh, and h_top must be numeric.")
   }
 
+  sp<-tolower(as.character(sp))
 
-  if(as.character(sp)%in%c("spruce","s","gran","g","1")){
+  if(sp%in%c("spruce","s","gran","g","1")){
     b1 <-  1.0329481
     b2 <-  0.9573736
     b3 <-  0.9981911
@@ -30,7 +31,7 @@ taperNO <- function(h,dbh,h_top,sp="spruce"){
     b7 <- -1.57204939
     b8 <-  0.18871109
     p  <-  0.2538893
-  } else if (as.character(sp)%in%c("pine","p","furu","f","2")){
+  } else if (sp%in%c("pine","p","furu","f","2")){
     b1 <-  0.9119251
     b2 <-  0.8646666
     b3 <-  1.0018507
@@ -40,7 +41,7 @@ taperNO <- function(h,dbh,h_top,sp="spruce"){
     b7 <-  0.05112187
     b8 <-  0.07639823
     p  <-  0.5737896
-  }else if (as.character(sp)%in%c("birch","b","bj\u00f8rk","bjork","bj",
+  }else if (sp%in%c("birch","b","bj\u00f8rk","bjork","bj",
                                   "lauv","l","3")){
     b1 <-  1.0667671
     b2 <-  0.8741271
