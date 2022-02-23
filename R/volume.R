@@ -25,8 +25,7 @@ volume<-function(dbh,h_top,h_vol_lower=0,h_vol_upper=NA,sp="spruce"){
     stop("dbh and h_top must have the same length.")
   }
 
-  #convert dbh unit (cm to m)
-  dbh<-dbh/100
+
 
   if(length(h_vol_upper)==1) {
     h_vol_upper<-rep(h_vol_upper,length(dbh))
@@ -58,7 +57,7 @@ volume<-function(dbh,h_top,h_vol_lower=0,h_vol_upper=NA,sp="spruce"){
   taper_integr<-unlist(apply( data.frame(dbh,h_top,h_vol_lower,h_vol_upper,sp),
                               MARGIN = 1,
                               FUN= function(x){
-                                stats::integrate(function(h,dbh,h_top,sp)(taperNO(h,dbh,h_top,sp)/2)^2,
+                                stats::integrate(function(h,dbh,h_top,sp)((taperNO(h,dbh,h_top,sp)/100)/2)^2,
                                                  dbh=as.numeric(x[1]),
                                                  h_top=as.numeric(x[2]),
                                                  sp=x[5],
