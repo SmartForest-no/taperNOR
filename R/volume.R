@@ -6,7 +6,7 @@
 #' @param h_top numeric vector of tree heights (m).
 #' @param h_vol_lower,h_vol_upper numeric vectors of heights between stem volume is calculated (m). NA in h_vol_upper is replaced by h_top.
 #' @param sp species
-#' @return Timber volume (m).
+#' @return Timber volume (m^3).
 #' @examples
 #' volume(20, 30)
 #' volume(dbh=c(20,25,30), h_top=c(30,25,37))
@@ -25,12 +25,16 @@ volume<-function(dbh,h_top,h_vol_lower=0,h_vol_upper=NA,sp="spruce"){
     stop("dbh and h_top must have the same length.")
   }
 
+  #convert dbh unit (cm to m)
+  dbh<-dbh/100
+
   if(length(h_vol_upper)==1) {
     h_vol_upper<-rep(h_vol_upper,length(dbh))
   } else if (length(h_vol_upper)!=length(dbh)){
     stop("h_vol_upper must be of length 1 of same length as dbh.")
   }
 
+  #replace NA with h_top
   h_vol_upper[is.na(h_vol_upper)]<-h_top[is.na(h_vol_upper)]
 
   if(length(h_vol_lower)==1) {

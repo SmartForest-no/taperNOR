@@ -4,22 +4,26 @@
 \alias{volume}
 \title{Calculate volume}
 \usage{
-volume(dbh, h_top, sp = "spruce")
+volume(dbh, h_top, h_vol_lower = 0, h_vol_upper = NA, sp = "spruce")
 }
 \arguments{
 \item{dbh}{numeric vector of diameters at breast height (cm).}
 
 \item{h_top}{numeric vector of tree heights (m).}
 
+\item{h_vol_lower, h_vol_upper}{numeric vectors of heights between stem volume is calculated (m). NA in h_vol_upper is replaced by h_top.}
+
 \item{sp}{species}
 }
 \value{
-Timber volume (m).
+Timber volume (m^3).
 }
 \description{
 Calculate volume from taper model by integerating the taper function.
 }
 \examples{
 volume(20, 30)
-volume(c(20,25,30), c(30,25,37))
+volume(dbh=c(20,25,30), h_top=c(30,25,37))
+volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_lower=seq(0,30,3))
+volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3))
 }
