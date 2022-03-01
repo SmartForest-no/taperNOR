@@ -25,8 +25,19 @@ Estimates heights of given diameters using optimization of the taper function.
 
 dlocation(dbh=35,h_top=35,d=c(25,40,12,1,70),sp="birch")
 
-h_vol<-dlocation(dbh=35,h_top=35,d=c(21,19))
-volume(35,35,h_vol_lower = h_vol[1])
-volume(35,35,h_vol_lower = h_vol[1],h_vol_upper=h_vol[2])
+D<-35
+H<-34
+T<-"G"
+
+#Case 1:
+dia<-21
+h_vol<-dlocation(d=dia,dbh=D,h_top=H,sp=T)
+volume(D,H,sp=T,h_vol_lower = h_vol)
+
+#Case2:
+dia<- c(21,16)
+A<-1.2
+h_vol<- dlocation(d=dia,dbh=D,h_top=H,sp=T)
+if (diff(h_vol)>A) volume(D,H,sp=T,h_vol_lower = h_vol[1],h_vol_upper=h_vol[2])
 
 }

@@ -3,5 +3,6 @@
 export(dlocation)
 export(hfromd)
 export(kublin_no)
+export(plot_taper)
 export(taperNO)
 export(volume)
