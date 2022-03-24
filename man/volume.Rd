@@ -4,7 +4,14 @@
 \alias{volume}
 \title{Calculate volume}
 \usage{
-volume(dbh, h_top, h_vol_lower = 0, h_vol_upper = NA, sp = "spruce")
+volume(
+  dbh,
+  h_top,
+  h_vol_lower = 0,
+  h_vol_upper = NA,
+  sp = "spruce",
+  with_bark = T
+)
 }
 \arguments{
 \item{dbh}{numeric vector of diameters at breast height (cm).}
@@ -14,6 +21,8 @@ volume(dbh, h_top, h_vol_lower = 0, h_vol_upper = NA, sp = "spruce")
 \item{h_vol_lower, h_vol_upper}{numeric vectors of heights between stem volume is calculated (m). NA in h_vol_upper is replaced by h_top.}
 
 \item{sp}{species}
+
+\item{with_bark}{calculate volume over (TRUE, default) or under bark (FALSE)}
 }
 \value{
 Timber volume (m^3).
@@ -26,4 +35,5 @@ volume(20, 30)
 volume(dbh=c(20,25,30), h_top=c(30,25,37))
 volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_lower=seq(0,30,3))
 volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3))
+volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3),with_bark=FALSE)
 }

@@ -4,7 +4,7 @@
 \alias{plot_taper}
 \title{Plot taper curve}
 \usage{
-plot_taper(dbh, h_top, sp = "spruce")
+plot_taper(dbh, h_top, sp = "spruce", with_bark = TRUE)
 }
 \arguments{
 \item{dbh}{diameter at breast height (cm).}
@@ -12,12 +12,23 @@ plot_taper(dbh, h_top, sp = "spruce")
 \item{h_top}{tree height (m).}
 
 \item{sp}{species}
+
+\item{with_bark}{plot taper curve with (TRUE, default) or without bark (FALSE).}
 }
 \description{
 Plots the taper curve
 }
 \examples{
+
+#one tree
 plot_taper(33,30)
+
+# multiple trees
 plot_taper(dbh=c(33,20,18),h_top=c(30,25,20),sp=c(1,1,3))
+
+# different tree species with same dbh and height
 plot_taper(dbh=rep(25,3),h_top=rep(27,3),sp=1:3)
+
+#one tree with and without bark
+plot_taper(dbh=rep(25,2),h_top=rep(27,2),sp=1,with_bark=c(TRUE,FALSE))
 }

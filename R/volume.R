@@ -13,7 +13,7 @@
 #' volume(dbh=c(20,25,30), h_top=c(30,25,37))
 #' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_lower=seq(0,30,3))
 #' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3))
-#' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3),with_bark=F)
+#' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3),with_bark=FALSE)
 #' @export
 
 

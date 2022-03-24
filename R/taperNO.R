@@ -9,8 +9,8 @@
 #' @param with_bark estimate diameter over (TRUE, default) or under bark (FALSE)
 #' @return diameters at h (cm).
 #' @examples
-#' taperNO(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=T)
-#' taperNO(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=F)
+#' taperNO(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=TRUE)
+#' taperNO(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=FALSE)
 #' @export
 
 

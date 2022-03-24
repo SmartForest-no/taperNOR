@@ -4,7 +4,7 @@
 \alias{taperNO}
 \title{Taper model for spruce, pine, and birch for Norway}
 \usage{
-taperNO(h, dbh, h_top, sp = "spruce")
+taperNO(h, dbh, h_top, sp = "spruce", with_bark = T)
 }
 \arguments{
 \item{h}{heights where to return diameters (m)}
@@ -14,6 +14,8 @@ taperNO(h, dbh, h_top, sp = "spruce")
 \item{h_top}{tree height (m)}
 
 \item{sp}{species ('spruce','pine' or 'birch'; 1:3)}
+
+\item{with_bark}{estimate diameter over (TRUE, default) or under bark (FALSE)}
 }
 \value{
 diameters at h (cm).
@@ -22,5 +24,6 @@ diameters at h (cm).
 The taper model is based on Kozak 1988.
 }
 \examples{
-taperNO(h=1:30,dbh=20,h_top=30,sp="pine")
+taperNO(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=TRUE)
+taperNO(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=FALSE)
 }

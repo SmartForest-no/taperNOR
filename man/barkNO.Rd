@@ -21,7 +21,7 @@ barkNO(d, h, dbh, h_top, sp = "spruce")
 double bark thickness at h (mm).
 }
 \description{
-The bark model is based on Gordon (1983) via Stängle (2016).
+The bark models are based on Gordon (1983) via Stängle (2016).
 }
 \examples{
 barkNO(d=30, h=1,dbh=25,h_top=30,sp="pine")

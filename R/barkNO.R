@@ -16,7 +16,7 @@
 #' plot((0:300)/10,taper,type="l",col="brown",xlab="height (m)",ylab="taper/bark (cm)")
 #' points((0:300)/10,taper-bark/10,type="l",col="green")
 #'
-#' plot((0:300)/10,barkNO(d=taper, h=(0:300)/10,dbh=25,h_top=30,sp="pine"),type="l",ylab="bark (mm)",xlab="height (m)")
+#' plot((0:300)/10,bark,type="l",ylab="bark (mm)",xlab="height (m)")
 #' @export
 
 

@@ -5,6 +5,7 @@
 #' @param dbh diameter at breast height (cm).
 #' @param h_top tree height (m).
 #' @param sp species
+#' @param with_bark plot taper curve with (TRUE, default) or without bark (FALSE).
 #' @examples
 #'
 #' #one tree
@@ -17,11 +18,11 @@
 #' plot_taper(dbh=rep(25,3),h_top=rep(27,3),sp=1:3)
 #'
 #' #one tree with and without bark
-#' plot_taper(dbh=rep(25,2),h_top=rep(27,2),sp=1,with_bark=c(T,F))
+#' plot_taper(dbh=rep(25,2),h_top=rep(27,2),sp=1,with_bark=c(TRUE,FALSE))
 #' @export
 
 
-plot_taper<-function(dbh,h_top,sp="spruce",with_bark=T){
+plot_taper<-function(dbh,h_top,sp="spruce",with_bark=TRUE){
 
   sp<-tolower(as.character(sp))
   sp<-ifelse(sp%in%c("spruce","s","gran","g","1"),"spruce",
