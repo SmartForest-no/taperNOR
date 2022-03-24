@@ -6,9 +6,18 @@
 #' @param h_top tree height (m).
 #' @param sp species
 #' @examples
+#'
+#' #one tree
 #' plot_taper(33,30)
+#'
+#' # multiple trees
 #' plot_taper(dbh=c(33,20,18),h_top=c(30,25,20),sp=c(1,1,3))
-#' plot_taper(dbh=rep(25,3),h_top=rep(27,3),sp=1:3,with_bark=c(T,T,F))
+#'
+#' # different tree species with same dbh and height
+#' plot_taper(dbh=rep(25,3),h_top=rep(27,3),sp=1:3)
+#'
+#' #one tree with and without bark
+#' plot_taper(dbh=rep(25,2),h_top=rep(27,2),sp=1,with_bark=c(T,F))
 #' @export
 
 
@@ -62,11 +71,11 @@ plot_taper<-function(dbh,h_top,sp="spruce",with_bark=T){
 
     graphics::points(1.3,taperNO(1.3,x[1],x[2],x[3],x[5]),pch=16,col=2-x[5])
     if(length(dbh)>1){
-      graphics::text(1.3,taperNO(1.3,x[1],x[2],x[3],x[5]),label=as.character(x[4]),adj=c(-0.5,-0.5))
+      graphics::text(1.3,taperNO(1.3,x[1],x[2],x[3],x[5]),label=as.character(x[4]),adj=c(-0.5,-0.5),col=2-x[5])
       }
-    graphics::points(x[2],0,pch=16)
+    graphics::points(x[2],0,pch=16,col=2-x[5])
     if(length(dbh)>1){
-      graphics::text(x[2],0,label=as.character(x[4]),adj=c(0,-1))
+      graphics::text(x[2],0,label=as.character(x[4]),adj=c(0,-1),col=2-x[5])
       }
 
 
