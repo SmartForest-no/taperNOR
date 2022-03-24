@@ -6,13 +6,15 @@
 #' @param dbh diameter at breast height (cm)
 #' @param h_top tree height (m)
 #' @param sp species ('spruce','pine' or 'birch'; 1:3)
+#' @param with_bark estimate diameter over (TRUE, default) or under bark (FALSE)
 #' @return diameters at h (cm).
 #' @examples
-#' taperNO(h=1:30,dbh=20,h_top=30,sp="pine")
+#' taperNO(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=T)
+#' taperNO(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=F)
 #' @export
 
 
-taperNO <- function(h,dbh,h_top,sp="spruce"){
+taperNO <- function(h,dbh,h_top,sp="spruce",with_bark=T){
 
 
   if(sum(!c(class(h),class(dbh),class(h_top))%in%c("numeric","integer"))>0){
@@ -42,7 +44,7 @@ taperNO <- function(h,dbh,h_top,sp="spruce"){
     b8 <-  0.07639823
     p  <-  0.57378960
   }else if (sp%in%c("birch","b","bj\u00f8rk","bjork","bj",
-                                  "lauv","l","3")){
+                    "lauv","l","3")){
     b1 <-  1.0262998
     b2 <-  0.9691802
     b3 <-  0.9952169
@@ -69,6 +71,15 @@ taperNO <- function(h,dbh,h_top,sp="spruce"){
        b8 * (dbh/h_top))
 
 
-  return(d)
+  if(with_bark){
+    return(d)
+  } else {
+    b<-barkNO(d = d,h = h,dbh = dbh,h_top = h_top,sp = sp)
+    d_ub<-d-b/10
+    d_ub[d_ub<0]<-0
+    return(d_ub)
+  }
+
+
 }
 

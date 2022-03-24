@@ -8,11 +8,11 @@
 #' @examples
 #' plot_taper(33,30)
 #' plot_taper(dbh=c(33,20,18),h_top=c(30,25,20),sp=c(1,1,3))
-#' plot_taper(dbh=rep(25,3),h_top=rep(27,3),sp=1:3)
+#' plot_taper(dbh=rep(25,3),h_top=rep(27,3),sp=1:3,with_bark=c(T,T,F))
 #' @export
 
 
-plot_taper<-function(dbh,h_top,sp="spruce"){
+plot_taper<-function(dbh,h_top,sp="spruce",with_bark=T){
 
   sp<-tolower(as.character(sp))
   sp<-ifelse(sp%in%c("spruce","s","gran","g","1"),"spruce",
@@ -33,29 +33,36 @@ plot_taper<-function(dbh,h_top,sp="spruce"){
   if(length(sp)==1){
     sp<-rep(sp,length(dbh))
   }
+  if(length(with_bark)==1){
+    sp<-rep(with_bark,length(dbh))
+  }
 
-  plotmat<-cbind(dbh,h_top,sp_num,1:length(dbh))
+  plotmat<-cbind(dbh,h_top,sp_num,1:length(dbh),with_bark)
+
+  max_plotmat<-plotmat[which.max(plotmat[,1]),]
 
   plot(1,type="n",
        xlim=c(0,max(plotmat[,2])),
        ylim=c(0,
-              taperNO(0,
-                      plotmat[which.max(plotmat[,1]),1],
-                      plotmat[which.max(plotmat[,1]),2],
-                      plotmat[which.max(plotmat[,1]),3])),
+              taperNO(h = 0,
+                        dbh = max_plotmat[1],
+                      h_top =max_plotmat[2],
+                      sp = max_plotmat[3],
+                      with_bark = as.logical(max_plotmat[5]))),
        xlab="h (m)",
        ylab="d (cm)")
 
   apply(plotmat, 1, function(x){
     graphics::points((0:(x[2]*10))/10,
-           taperNO((0:(x[2]*10))/10,x[1],x[2],x[3]),
+           taperNO((0:(x[2]*10))/10,x[1],x[2],x[3],as.logical(x[5])),
            type="l",
-           lty=x[3]
+           lty=x[3],
+           col=2-x[5]
     )
 
-    graphics::points(1.3,taperNO(1.3,x[1],x[2],x[3]),pch=16)
+    graphics::points(1.3,taperNO(1.3,x[1],x[2],x[3],x[5]),pch=16,col=2-x[5])
     if(length(dbh)>1){
-      graphics::text(1.3,taperNO(1.3,x[1],x[2],x[3]),label=as.character(x[4]),adj=c(-0.5,-0.5))
+      graphics::text(1.3,taperNO(1.3,x[1],x[2],x[3],x[5]),label=as.character(x[4]),adj=c(-0.5,-0.5))
       }
     graphics::points(x[2],0,pch=16)
     if(length(dbh)>1){
@@ -69,10 +76,11 @@ plot_taper<-function(dbh,h_top,sp="spruce"){
   if(length(dbh)==1){
     graphics::mtext(paste0("DBH= ",round(dbh,2),
                  " cm; H= ",round(h_top,2),
-                 " m","; species= ",sp),
+                 " m","; species= ",sp,
+                 ifelse(with_bark,"; with","; without")," bark"),
           adj=0,line=0)
   } else {
-    graphics::legend("topright",legend = c("spruce","pine","birch"),lty=1:3)
+    graphics::legend("topright",legend = c("spruce","pine","birch","w/ bark","w/o bark"),lty=c(1:3,1,1),lwd=c(1,1,1,4,4),col=c(1,1,1,1:2))
   }
 }
 
