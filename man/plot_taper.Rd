@@ -18,4 +18,6 @@ Plots the taper curve
 }
 \examples{
 plot_taper(33,30)
+plot_taper(dbh=c(33,20,18),h_top=c(30,25,20),sp=c(1,1,3))
+plot_taper(dbh=rep(25,3),h_top=rep(27,3),sp=1:3)
 }

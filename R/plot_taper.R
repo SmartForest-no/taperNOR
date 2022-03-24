@@ -47,19 +47,19 @@ plot_taper<-function(dbh,h_top,sp="spruce"){
        ylab="d (cm)")
 
   apply(plotmat, 1, function(x){
-    points((0:(x[2]*10))/10,
+    graphics::points((0:(x[2]*10))/10,
            taperNO((0:(x[2]*10))/10,x[1],x[2],x[3]),
            type="l",
            lty=x[3]
     )
 
-    points(1.3,taperNO(1.3,x[1],x[2],x[3]),pch=16)
+    graphics::points(1.3,taperNO(1.3,x[1],x[2],x[3]),pch=16)
     if(length(dbh)>1){
-      text(1.3,taperNO(1.3,x[1],x[2],x[3]),label=as.character(x[4]),adj=c(-0.5,-0.5))
+      graphics::text(1.3,taperNO(1.3,x[1],x[2],x[3]),label=as.character(x[4]),adj=c(-0.5,-0.5))
       }
-    points(x[2],0,pch=16)
+    graphics::points(x[2],0,pch=16)
     if(length(dbh)>1){
-      text(x[2],0,label=as.character(x[4]),adj=c(0,-1))
+      graphics::text(x[2],0,label=as.character(x[4]),adj=c(0,-1))
       }
 
 
@@ -67,12 +67,12 @@ plot_taper<-function(dbh,h_top,sp="spruce"){
   })
 
   if(length(dbh)==1){
-    mtext(paste0("DBH= ",round(dbh,2),
+    graphics::mtext(paste0("DBH= ",round(dbh,2),
                  " cm; H= ",round(h_top,2),
                  " m","; species= ",sp),
           adj=0,line=0)
   } else {
-    legend("topright",legend = c("spruce","pine","birch"),lty=1:3)
+    graphics::legend("topright",legend = c("spruce","pine","birch"),lty=1:3)
   }
 }
 
