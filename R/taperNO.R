@@ -3,7 +3,7 @@
 #' The taper model is based on Kozak 1988.
 #'
 #' @param h heights where to return diameters (m)
-#' @param dbh diameter at breast height (cm)
+#' @param dbh diameter at breast height over bark (cm)
 #' @param h_top tree height (m)
 #' @param sp species ('spruce','pine' or 'birch'; 1:3)
 #' @param with_bark estimate diameter over (TRUE, default) or under bark (FALSE)
@@ -14,7 +14,7 @@
 #' @export
 
 
-taperNO <- function(h,dbh,h_top,sp="spruce",with_bark=T){
+taperNO <- function(h,dbh,h_top,sp="spruce",with_bark=TRUE){
 
 
   if(sum(!c(class(h),class(dbh),class(h_top))%in%c("numeric","integer"))>0){

@@ -4,12 +4,12 @@
 \alias{taperNO}
 \title{Taper model for spruce, pine, and birch for Norway}
 \usage{
-taperNO(h, dbh, h_top, sp = "spruce", with_bark = T)
+taperNO(h, dbh, h_top, sp = "spruce", with_bark = TRUE)
 }
 \arguments{
 \item{h}{heights where to return diameters (m)}
 
-\item{dbh}{diameter at breast height (cm)}
+\item{dbh}{diameter at breast height over bark (cm)}
 
 \item{h_top}{tree height (m)}
 

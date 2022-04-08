@@ -17,7 +17,7 @@
 #' @export
 
 
-volume<-function(dbh,h_top,h_vol_lower=0,h_vol_upper=NA,sp="spruce",with_bark=T){
+volume<-function(dbh,h_top,h_vol_lower=0,h_vol_upper=NA,sp="spruce",with_bark=TRUE){
 
   if(class(dbh)!="numeric"|class(h_top)!="numeric"|class(h_vol_lower)!="numeric"){
     stop("dbh, h_top and h_vol_lower must be numeric.")

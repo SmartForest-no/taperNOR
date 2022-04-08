@@ -10,7 +10,7 @@ volume(
   h_vol_lower = 0,
   h_vol_upper = NA,
   sp = "spruce",
-  with_bark = T
+  with_bark = TRUE
 )
 }
 \arguments{

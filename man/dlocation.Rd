@@ -4,26 +4,29 @@
 \alias{dlocation}
 \title{Estimate height of diameters along the stem}
 \usage{
-dlocation(dbh, h_top, d, sp = "spruce")
+dlocation(dbh, h_top, d, sp = "spruce", with_bark = TRUE)
 }
 \arguments{
-\item{dbh}{diameter at breast height (cm)}
+\item{dbh}{diameter at breast height over bark (cm)}
 
 \item{h_top}{height of diameter measurements (m)}
 
 \item{d}{diameters (cm)}
 
 \item{sp}{species}
+
+\item{with_bark}{diameter with (TRUE, default) or without bark (FALSE).}
 }
 \value{
 Timber volume (m^3).
 }
 \description{
-Estimates heights of given diameters using optimization of the taper function.
+Estimates heights of given diameters along the stem using optimization of the taper function.
 }
 \examples{
 
-dlocation(dbh=35,h_top=35,d=c(25,40,12,1,70),sp="birch")
+dlocation(dbh=35,h_top=35,d=c(25,40,12,2,70),sp="birch")
+dlocation(dbh=35,h_top=35,d=c(25,40,12,2,70),sp="birch",with_bark=FALSE)
 
 D<-35
 H<-34

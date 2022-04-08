@@ -1,15 +1,17 @@
 #' Estimate height of diameters along the stem
 #'
-#' Estimates heights of given diameters using optimization of the taper function.
+#' Estimates heights of given diameters along the stem using optimization of the taper function.
 #'
-#' @param dbh diameter at breast height (cm)
+#' @param dbh diameter at breast height over bark (cm)
 #' @param h_top height of diameter measurements (m)
 #' @param d diameters (cm)
 #' @param sp species
+#' @param with_bark diameter with (TRUE, default) or without bark (FALSE).
 #' @return Timber volume (m^3).
 #' @examples
 #'
-#' dlocation(dbh=35,h_top=35,d=c(25,40,12,1,70),sp="birch")
+#' dlocation(dbh=35,h_top=35,d=c(25,40,12,2,70),sp="birch")
+#' dlocation(dbh=35,h_top=35,d=c(25,40,12,2,70),sp="birch",with_bark=FALSE)
 #'
 #' D<-35
 #' H<-34
@@ -28,45 +30,57 @@
 #'
 #' @export
 
-dlocation<-function(dbh,h_top,d,sp="spruce"){
 
-  st<-stats::predict(stats::lm(h~d,data=data.frame(h=c(1.3,h_top),d=c(dbh,0))),newdata = data.frame(d=d))
+
+dlocation<-function(dbh,h_top,d,sp="spruce",with_bark=TRUE){
+
+  #estimate starting values
+  st<-stats::predict(
+    stats::lm(h~d,data=data.frame(h=c(1.3,h_top),d=c(dbh,0))),
+    newdata = data.frame(d=d))
   st[st<0]<-0
 
-  result<-apply(cbind(d,st),1,function(x)try(.dlocation_optim(x[2],x[1],dbh,h_top,sp)$par,T))
 
-
-
-
+  result<-apply(
+    cbind(d,st),1,
+    function(x)try(.dlocation_optim(st=x[2],
+                                    d_o = x[1],
+                                    dbh_o = dbh,
+                                    h_top_o = h_top,
+                                    sp_o = sp,
+                                    with_bark_o = with_bark)$par)
+  )
 
   return(round(result,2))
 
 }
 
 
+.dlocation_optim<-function(st,d_o,dbh_o,h_top_o,sp_o,with_bark_o){
 
-.dlocation_optim<-function(st,d_o,dbh_o,h_top_o,sp_o){
   stats::optim(par=st,
-               fn= function(x_o,d_o,dbh_o,h_top_o,sp_o){
-                 return(
-                   mean(abs(
-                     (d_o-
-                        taperNO(
-                          h=x_o,
-                          dbh=dbh_o,
-                          h_top=h_top_o,
-                          sp=sp_o))
-                   )
-                   )
-                 )
+               fn= function(x_o,d_o,dbh_o,h_top_o,sp_o,with_bark_o){
+                 d_i<-taperNO(
+                   h=x_o,
+                   dbh=dbh_o,
+                   h_top=h_top_o,
+                   sp=sp_o,
+                   with_bark=with_bark_o)
+                 min_measure<-mean(abs((d_o-d_i)))
+                 return(min_measure)
                },
                d_o=d_o,
                h_top_o=h_top_o,
                dbh_o=dbh_o,
                sp_o=sp_o,
+               with_bark_o= as.logical(with_bark_o),
                lower=0,
                upper=h_top_o,
                method="Brent")
 }
+
+
+
+
 
 
