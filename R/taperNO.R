@@ -3,8 +3,8 @@
 #' The taper model is based on Kozak A. 1988. A variable-exponent taper equation. Can J For Res. 18(11):1363–1368.
 #'
 #' @param h heights above ground where to return diameters (m).
-#' @param dbh diameter at breast height over bark (cm).
-#' @param h_top tree height (m) above ground.
+#' @param dbh diameter at breast height (1.3 m above ground) over bark (cm).
+#' @param h_top tree height above ground (m).
 #' @param sp species ('spruce','pine' or 'birch'; 1:3).
 #' @param with_bark estimate diameter over (TRUE, default) or under bark (FALSE)
 #' @return diameters at h (cm).
