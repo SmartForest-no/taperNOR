@@ -3,7 +3,7 @@
 #' Plots the taper curve
 #'
 #' @param dbh diameter at breast height, 1.3 m above ground (cm).
-#' @param h_top tree height (m) above ground.
+#' @param h_top tree height above ground (m).
 #' @param sp species
 #' @param with_bark plot taper curve with (TRUE, default) or without bark (FALSE).
 #' @examples
