@@ -2,8 +2,8 @@
 #'
 #' Calculate volume from taper model by integerating the taper function.
 #'
-#' @param dbh numeric vector of diameters at breast height (cm).
-#' @param h_top numeric vector of tree heights (m).
+#' @param dbh numeric vector of diameters at breast height, 1.3 m above ground (cm).
+#' @param h_top numeric vector of tree heights (m) above ground.
 #' @param h_vol_lower,h_vol_upper numeric vectors of heights between stem volume is calculated (m). NA in h_vol_upper is replaced by h_top.
 #' @param sp species
 #' @param with_bark calculate volume over (TRUE, default) or under bark (FALSE)
