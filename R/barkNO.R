@@ -1,7 +1,7 @@
 #' Bark model for spruce, pine, and birch for Norway
 #'
-#' The bark models are based on Gordon (Gordon A. 1983. Estimating bark thickness of Pinus radiata. NZJ For Sci. 13(3):340–348) 
-#' via Stängle et al. (Stängle SM, Sauter UH, Dormann CF. 2017. Comparison of models for estimating bark thickness of Picea abies in southwest Germany: the role of tree, stand, and environmental factors. Ann For Sci. 74(1):16.).
+#' The bark models are based on Gordon A. 1983. Estimating bark thickness of Pinus radiata. NZJ For Sci. 13(3):340–348.
+#' via Stängle et al. 2017. Comparison of models for estimating bark thickness of Picea abies in southwest Germany: the role of tree, stand, and environmental factors. Ann For Sci. 74(1):16.
 #'
 #' @param d diameter (cm)
 #' @param h height (m) above ground
