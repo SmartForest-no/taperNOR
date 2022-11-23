@@ -1,4 +1,7 @@
 #' Taper model for spruce, pine, and birch for Norway with dynamic diameter input
+#' 
+#' Based on Kublin et al. 2013. A flexible stem taper and volume prediction method based on mixed-effects B-spline regression. Eur J For Res. 132(5-6):983–997 
+#' and code in Kublin & Breidenbach (https://CRAN.R-project.org/package=TapeR). 
 #'
 #' Allows the use of multiple diameters measured at various points along the stem to estimate taper.
 #'
