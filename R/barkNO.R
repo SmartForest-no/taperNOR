@@ -1,11 +1,12 @@
 #' Bark model for spruce, pine, and birch for Norway
 #'
-#' The bark models are based on Gordon (1983) via Stängle (2016).
+#' The bark models are based on Gordon A. 1983. Estimating bark thickness of Pinus radiata. NZJ For Sci. 13(3):340–348.
+#' via Stängle et al. 2017. Comparison of models for estimating bark thickness of Picea abies in southwest Germany: the role of tree, stand, and environmental factors. Ann For Sci. 74(1):16.
 #'
-#' @param d diameter (cm)
-#' @param h height (m)
-#' @param dbh diameter at breast height (cm)
-#' @param h_top tree height (m)
+#' @param d diameter (cm).
+#' @param h height above ground (m). 
+#' @param dbh diameter at breast height, 1.3 m above ground (cm).
+#' @param h_top tree height above ground (m). 
 #' @param sp species ('spruce','pine' or 'birch'; 1:3)
 #' @return double bark thickness at h (mm).
 #' @examples

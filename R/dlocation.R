@@ -2,12 +2,12 @@
 #'
 #' Estimates heights of given diameters along the stem using optimization of the taper function.
 #'
-#' @param dbh diameter at breast height over bark (cm)
-#' @param h_top height of diameter measurements (m)
-#' @param d diameters (cm)
-#' @param sp species
+#' @param dbh diameter at breast height (1.3 m above ground) over bark (cm).
+#' @param h_top height above ground of diameter measurements (m).
+#' @param d diameters (cm).
+#' @param sp species.
 #' @param with_bark diameter with (TRUE, default) or without bark (FALSE).
-#' @return Timber volume (m^3).
+#' @return Height of given diameter (m).
 #' @examples
 #'
 #' dlocation(dbh=35,h_top=35,d=c(25,40,12,2,70),sp="birch")

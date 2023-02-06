@@ -1,13 +1,13 @@
-#' Estimate tree height from diameters
+#' Estimate tree height above ground from diameters
 #'
-#' Estimates tree height from diameters using optimization of the taper function.
+#' Estimates tree height above ground from diameters using optimization of the taper function.
 #'
-#' @param d diameters in cm
-#' @param h height of diameter measurements in m
+#' @param d diameters (cm).
+#' @param h height above ground of diameter measurements (m).
 #' @param sp species
 #' @param output output from optimization: 'h' outputs the tree height,'d' diameter at breast height, 'all' result of optim.
 #' @param grd_search if TRUE optimization is run on a matrix of initial parameters. The result of the best fit is returned. Might give better result at cost of performance.
-#' @return Timber volume in m.
+#' @return Tree height above ground (m).
 #' @examples
 #'
 #' hfromd(d=c(39,27),h=c(2,7),sp="birch")
