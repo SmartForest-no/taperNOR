@@ -1,12 +1,12 @@
 #' Calculate volume
 #'
-#' Calculate volume from taper model by integerating the taper function.
+#' Calculate volume from taper model by integerating the taper function. Height is distance from stem base.
 #'
 #' @param dbh numeric vector of diameters at breast height (cm).
 #' @param h_top numeric vector of tree heights (m).
 #' @param h_vol_lower,h_vol_upper numeric vectors of heights between stem volume is calculated (m). NA in h_vol_upper is replaced by h_top.
-#' @param sp species
-#' @param with_bark calculate volume over (TRUE, default) or under bark (FALSE)
+#' @param sp species.
+#' @param with_bark calculate volume over (TRUE, default) or under bark (FALSE).
 #' @return Timber volume (m^3).
 #' @examples
 #' volume(20, 30)
@@ -64,7 +64,7 @@ volume<-function(dbh,h_top,h_vol_lower=0,h_vol_upper=NA,sp="spruce",with_bark=TR
   taper_integr<-unlist(apply( data.frame(dbh,h_top,h_vol_lower,h_vol_upper,sp,with_bark),
                               MARGIN = 1,
                               FUN= function(x){
-                                stats::integrate(function(h,dbh,h_top,sp,with_bark)((taperNO(h,dbh,h_top,sp,with_bark)/100)/2)^2,
+                                stats::integrate(function(h,dbh,h_top,sp,with_bark)((taperNOR(h,dbh,h_top,sp,with_bark)/100)/2)^2,
                                                  dbh=as.numeric(x[1]),
                                                  h_top=as.numeric(x[2]),
                                                  sp=x[5],

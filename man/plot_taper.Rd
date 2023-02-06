@@ -9,7 +9,7 @@ plot_taper(dbh, h_top, sp = "spruce", with_bark = TRUE)
 \arguments{
 \item{dbh}{diameter at breast height (cm).}
 
-\item{h_top}{tree height (m).}
+\item{h_top}{tree height from stem base (m).}
 
 \item{sp}{species}
 

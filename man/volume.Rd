@@ -20,15 +20,15 @@ volume(
 
 \item{h_vol_lower, h_vol_upper}{numeric vectors of heights between stem volume is calculated (m). NA in h_vol_upper is replaced by h_top.}
 
-\item{sp}{species}
+\item{sp}{species.}
 
-\item{with_bark}{calculate volume over (TRUE, default) or under bark (FALSE)}
+\item{with_bark}{calculate volume over (TRUE, default) or under bark (FALSE).}
 }
 \value{
 Timber volume (m^3).
 }
 \description{
-Calculate volume from taper model by integerating the taper function.
+Calculate volume from taper model by integerating the taper function. Height is distance from stem base.
 }
 \examples{
 volume(20, 30)

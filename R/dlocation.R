@@ -1,6 +1,6 @@
 #' Estimate height of diameters along the stem
 #'
-#' Estimates heights of given diameters along the stem using optimization of the taper function.
+#' Estimates heights of given diameters along the stem using optimization of the taper function. Height is distance from stem base.
 #'
 #' @param dbh diameter at breast height over bark (cm)
 #' @param h_top height of diameter measurements (m)
@@ -60,7 +60,7 @@ dlocation<-function(dbh,h_top,d,sp="spruce",with_bark=TRUE){
 
   stats::optim(par=st,
                fn= function(x_o,d_o,dbh_o,h_top_o,sp_o,with_bark_o){
-                 d_i<-taperNO(
+                 d_i<-taperNOR(
                    h=x_o,
                    dbh=dbh_o,
                    h_top=h_top_o,

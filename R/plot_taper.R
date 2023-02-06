@@ -3,7 +3,7 @@
 #' Plots the taper curve
 #'
 #' @param dbh diameter at breast height (cm).
-#' @param h_top tree height (m).
+#' @param h_top tree height from stem base (m).
 #' @param sp species
 #' @param with_bark plot taper curve with (TRUE, default) or without bark (FALSE).
 #' @examples
@@ -54,7 +54,7 @@ plot_taper<-function(dbh,h_top,sp="spruce",with_bark=TRUE){
   plot(1,type="n",
        xlim=c(0,max(plotmat[,2])),
        ylim=c(0,
-              taperNO(h = 0,
+              taperNOR(h = 0,
                         dbh = max_plotmat[1],
                       h_top =max_plotmat[2],
                       sp = max_plotmat[3],
@@ -64,15 +64,15 @@ plot_taper<-function(dbh,h_top,sp="spruce",with_bark=TRUE){
 
   apply(plotmat, 1, function(x){
     graphics::points((0:(x[2]*10))/10,
-           taperNO((0:(x[2]*10))/10,x[1],x[2],x[3],as.logical(x[5])),
+           taperNOR((0:(x[2]*10))/10,x[1],x[2],x[3],as.logical(x[5])),
            type="l",
            lty=x[3],
            col=2-x[5]
     )
 
-    graphics::points(1.3,taperNO(1.3,x[1],x[2],x[3],x[5]),pch=16,col=2-x[5])
+    graphics::points(1.3,taperNOR(1.3,x[1],x[2],x[3],x[5]),pch=16,col=2-x[5])
     if(length(dbh)>1){
-      graphics::text(1.3,taperNO(1.3,x[1],x[2],x[3],x[5]),label=as.character(x[4]),adj=c(-0.5,-0.5),col=2-x[5])
+      graphics::text(1.3,taperNOR(1.3,x[1],x[2],x[3],x[5]),label=as.character(x[4]),adj=c(-0.5,-0.5),col=2-x[5])
       }
     graphics::points(x[2],0,pch=16,col=2-x[5])
     if(length(dbh)>1){

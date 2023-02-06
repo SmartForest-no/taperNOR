@@ -1,6 +1,6 @@
 #' Taper model for spruce, pine, and birch for Norway with dynamic diameter input
 #'
-#' Allows the use of multiple diameters measured at various points along the stem to estimate taper.
+#' Allows the use of multiple diameters measured at various points along the stem to estimate taper.Height is distance from stem base.
 #'
 #' @param Hx height where to return diameters (m)
 #' @param Dx or diameters (cm) for which to return a height
@@ -12,7 +12,7 @@
 #' @return When Hx is given: diameters at Hx (cm). When Dx is given: heights where d=Dx (m).
 #' @export
 
-kublin_no <- function(Hx=NULL,Hm,Dm,mHt,sp=1,Dx=NULL,...) {
+kublin_nor <- function(Hx=NULL,Hm,Dm,mHt,sp=1,Dx=NULL,...) {
 
   if(sp==1){
     par_lme<-kublin_par_lme_spruce

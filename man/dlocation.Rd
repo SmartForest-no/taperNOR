@@ -21,7 +21,7 @@ dlocation(dbh, h_top, d, sp = "spruce", with_bark = TRUE)
 Timber volume (m^3).
 }
 \description{
-Estimates heights of given diameters along the stem using optimization of the taper function.
+Estimates heights of given diameters along the stem using optimization of the taper function. Height is distance from stem base.
 }
 \examples{
 

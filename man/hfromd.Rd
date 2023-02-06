@@ -7,9 +7,9 @@
 hfromd(d, h, sp = "spruce", output = "h", grd_search = F)
 }
 \arguments{
-\item{d}{diameters in cm}
+\item{d}{diameters (cm).}
 
-\item{h}{height of diameter measurements in m}
+\item{h}{height of diameter measurements (m).}
 
 \item{sp}{species}
 
@@ -21,7 +21,7 @@ hfromd(d, h, sp = "spruce", output = "h", grd_search = F)
 Timber volume in m.
 }
 \description{
-Estimates tree height from diameters using optimization of the taper function.
+Estimates tree height from diameters using optimization of the taper function. Height is distance from stem base.
 }
 \examples{
 

@@ -1,18 +1,18 @@
 #' Bark model for spruce, pine, and birch for Norway
 #'
-#' The bark models are based on Gordon (1983) via Stängle (2016).
+#' The bark models are based on Gordon (1983) via Stängle (2016). Height is distance from stem base.
 #'
-#' @param d diameter (cm)
-#' @param h height (m)
-#' @param dbh diameter at breast height (cm)
-#' @param h_top tree height (m)
-#' @param sp species ('spruce','pine' or 'birch'; 1:3)
+#' @param d diameter (cm).
+#' @param h height (m).
+#' @param dbh diameter at breast height (cm).
+#' @param h_top tree height (m).
+#' @param sp species ('spruce','pine' or 'birch'; 1:3).
 #' @return double bark thickness at h (mm).
 #' @examples
-#' barkNO(d=30, h=1,dbh=25,h_top=30,sp="pine")
+#' barkNOR(d=30, h=1,dbh=25,h_top=30,sp="pine")
 #'
-#' taper<-taperNO(h=(0:300)/10,dbh=25,h_top=30,sp="pine")
-#' bark<-barkNO(d=taper, h=(0:300)/10,dbh=25,h_top=30,sp="pine")
+#' taper<-taperNOR(h=(0:300)/10,dbh=25,h_top=30,sp="pine")
+#' bark<-barkNOR(d=taper, h=(0:300)/10,dbh=25,h_top=30,sp="pine")
 #' plot((0:300)/10,taper,type="l",col="brown",xlab="height (m)",ylab="taper/bark (cm)")
 #' points((0:300)/10,taper-bark/10,type="l",col="green")
 #'
@@ -20,7 +20,7 @@
 #' @export
 
 
-barkNO <- function(d,h,dbh,h_top,sp="spruce"){
+barkNOR <- function(d,h,dbh,h_top,sp="spruce"){
 
 
   if(sum(!c(class(h),class(dbh),class(h_top))%in%c("numeric","integer"))>0){
