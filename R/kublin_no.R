@@ -1,12 +1,15 @@
 #' Taper model for spruce, pine, and birch for Norway with dynamic diameter input
 #'
-#' Allows the use of multiple diameters measured at various points along the stem to estimate taper.Height is distance from stem base.
+#' Based on Kublin et al. 2013. A flexible stem taper and volume prediction method based on mixed-effects B-spline regression. Eur J For Res. 132(5-6):983–997
+#' and code in Kublin & Breidenbach (https://CRAN.R-project.org/package=TapeR).
 #'
-#' @param Hx height where to return diameters (m)
+#' Allows the use of multiple diameters measured at various points along the stem to estimate taper.
+#'
+#' @param Hx height above ground where to return diameters (m)
 #' @param Dx or diameters (cm) for which to return a height
-#' @param Hm height of measured diameters (m)
+#' @param Hm height above ground of measured diameters (m)
 #' @param Dm measured diameters (cm)
-#' @param mHt measured tree height (m)
+#' @param mHt measured tree height (m) above ground
 #' @param sp species
 #' @param ... parameters handed over to E_DHx_HmDm_HT.f or E_HDx_HmDm_HT.f
 #' @return When Hx is given: diameters at Hx (cm). When Dx is given: heights where d=Dx (m).

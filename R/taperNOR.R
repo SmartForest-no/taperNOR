@@ -1,12 +1,12 @@
 #' Taper model for spruce, pine, and birch for Norway
 #'
-#' The taper model is based on Kozak 1988. Height is distance from stem base.
+#' The taper model is based on Kozak A. 1988. A variable-exponent taper equation. Can J For Res. 18(11):1363–1368.
 #'
-#' @param h heights where to return diameters (m).
-#' @param dbh diameter at breast height over bark (cm).
-#' @param h_top tree height (m).
+#' @param h heights above ground where to return diameters (m).
+#' @param dbh diameter at breast height (1.3 m above ground) over bark (cm).
+#' @param h_top tree height above ground (m).
 #' @param sp species ('spruce','pine' or 'birch'; 1:3).
-#' @param with_bark estimate diameter over (TRUE, default) or under bark (FALSE).
+#' @param with_bark estimate diameter over (TRUE, default) or under bark (FALSE)
 #' @return diameters at h (cm).
 #' @examples
 #' taperNOR(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=TRUE)

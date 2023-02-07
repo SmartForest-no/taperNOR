@@ -1,13 +1,14 @@
 #' Bark model for spruce, pine, and birch for Norway
 #'
-#' The bark models are based on Gordon (1983) via Stängle (2016). Height is distance from stem base.
+#' The bark models are based on Gordon A. 1983. Estimating bark thickness of Pinus radiata. NZJ For Sci. 13(3):340–348.
+#' via Stängle et al. 2017. Comparison of models for estimating bark thickness of Picea abies in southwest Germany: the role of tree, stand, and environmental factors. Ann For Sci. 74(1):16.
 #'
 #' @param d diameter (cm).
-#' @param h height (m).
-#' @param dbh diameter at breast height (cm).
-#' @param h_top tree height (m).
-#' @param sp species ('spruce','pine' or 'birch'; 1:3).
-#' @return double bark thickness at h (mm).
+#' @param h height above ground (m).
+#' @param dbh diameter at breast height, 1.3 m above ground (cm).
+#' @param h_top tree height above ground (m).
+#' @param sp species ('spruce','pine' or 'birch'; 1:3)
+#' @return double bark thickness (mm) at height h with diameter d.
 #' @examples
 #' barkNOR(d=30, h=1,dbh=25,h_top=30,sp="pine")
 #'
@@ -32,32 +33,32 @@ barkNOR <- function(d,h,dbh,h_top,sp="spruce"){
   sp<-tolower(as.character(sp))
 
   if(sp%in%c("spruce","s","gran","g","1")){
-    b0 <- 16.5854166123312
-    b1 <- -16.3796705441853
-    b2 <- 0.00322093293639776
-    b3 <- 0.534944513368138
-    b4 <- 0.593920452511068
-    b5 <- -0.00317409820187845
-    b6 <- -0.0216956105818279
+    b0 <- -89.5977269892
+    b1 <- 90.0234341489
+    b2 <- -0.0052588585
+    b3 <- -0.5110831924
+    b4 <- 0.0243184194
+    b5 <- -0.0184999626
+    b6 <- -0.4506571771
   } else if (sp%in%c("pine","p","furu","f","2")){
 
-    b0 <- 1.10316721739448
-    b1 <- 1.36530542477874
-    b2 <- 7.3674429189434
-    b3 <- 1.76577924416511
-    b4 <- 0.707317252886313
-    b5 <- -0.0173465347111805
-    b6 <- -0.278702673825782
+    b0 <- -0.9518643096
+    b1 <- 1.9324863178
+    b2 <- 3.0171238020
+    b3 <- 1.6611366771
+    b4 <- 0.1564753099
+    b5 <- -0.0125847227
+    b6 <- -0.0922072707
 
   }else if (sp%in%c("birch","b","bj\u00f8rk","bjork","bj",
                                   "lauv","l","3")){
-    b0 <- -2.14888054022854
-    b1 <- 2.08810690768153
-    b2 <- 1.60626481869625
-    b3 <- 2.72701321244184
-    b4 <- 0.0800046470288129
-    b5 <- 0.0392933980145204
-    b6 <- 0.42805896337782
+    b0 <- -2.8145935120
+    b1 <- 2.0162402471
+    b2 <- 1.7347110336
+    b3 <- 2.6976118346
+    b4 <- 0.0859727706
+    b5 <- 0.0333428631
+    b6 <- 0.3003342383
 
   } else{
     stop("sp must be in c(\"spruce\",\"pine\",\"birch\")")
