@@ -4,7 +4,7 @@
 #'
 #' @param dbh numeric vector of diameters at breast height, 1.3 m above ground (cm).
 #' @param h_top numeric vector of tree heights above ground (m).
-#' @param h_vol_lower,h_vol_upper numeric vectors of heights between stem volume is calculated (m). NA in h_vol_upper is replaced by h_top.
+#' @param h_vol_lower,h_vol_upper numeric vectors of heights between stem volume is calculated (m). Default stump height (h_vol_lower) is 1% of h_top. NA in h_vol_upper is replaced by h_top.
 #' @param sp species
 #' @param with_bark calculate volume over (TRUE, default) or under bark (FALSE)
 #' @return Timber volume (m^3).
@@ -17,7 +17,7 @@
 #' @export
 
 
-volume<-function(dbh,h_top,h_vol_lower=0,h_vol_upper=NA,sp="spruce",with_bark=TRUE){
+volume<-function(dbh,h_top,h_vol_lower=0.01*h_top,h_vol_upper=NA,sp="spruce",with_bark=TRUE){
 
   if(class(dbh)!="numeric"|class(h_top)!="numeric"|class(h_vol_lower)!="numeric"){
     stop("dbh, h_top and h_vol_lower must be numeric.")
