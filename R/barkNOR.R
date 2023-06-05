@@ -1,6 +1,6 @@
 #' Bark model for spruce, pine, and birch for Norway
 #'
-#' The bark models are based on Gordon A. 1983. Estimating bark thickness of Pinus radiata. NZJ For Sci. 13(3):340–348.
+#' The bark models are based on Hannrup B. 2004. Funktioner för skattning av barkens tjocklek hos tall och gran vid avverkning med skördare. (Functions for prediction of bark thickness of Norway spruce and Scots pine at CTL-harvesting). Arbetsrapport 575. Skogforsk, Uppsala.
 #' via Stängle et al. 2017. Comparison of models for estimating bark thickness of Picea abies in southwest Germany: the role of tree, stand, and environmental factors. Ann For Sci. 74(1):16.
 #'
 #' @param d diameter (cm).
@@ -33,38 +33,29 @@ barkNOR <- function(d,h,dbh,h_top,sp="spruce"){
   sp<-tolower(as.character(sp))
 
   if(sp%in%c("spruce","s","gran","g","1")){
-    b0 <- -5419.06685603865    
-    b1 <- 5419.50997494304  
-    b2 <- -0.00008890974        
-    b3 <- -0.53038541438  
-    b4 <- 0.02453226240        
-    b5 <- -0.01886516439 
-    b6 <- -0.45171471751
+    
+    b0 <- 2.32391608    
+    b1 <- 0.06830421  
+    b2 <- 0.39936183
+    
   } else if (sp%in%c("pine","p","furu","f","2")){
 
-    b0 <- -0.95978811  
-    b1 <- 1.94131645  
-    b2 <- 3.00687284  
-    b3 <- 1.66494025 
-    b4 <- 0.15516859 
-    b5 <- -0.01257692
-    b6 <- -0.09208307
+    b0 <- 2.9306985  
+    b1 <- -0.4045155  
+    b2 <- 1.2126856  
 
   }else if (sp%in%c("birch","b","bj\u00f8rk","bjork","bj",
                                   "lauv","l","3")){
-    b0 <- -2.77956885  
-    b1 <- 2.00041120  
-    b2 <- 1.75407493  
-    b3 <- 2.67852784 
-    b4 <- 0.08633534  
-    b5 <- 0.03298938  
-    b6 <- 0.29434451
+    
+    b0 <- -0.48552367  
+    b1 <- 0.04957885  
+    b2 <- 0.84676248 
 
   } else{
     stop("sp must be in c(\"spruce\",\"pine\",\"birch\")")
   }
 
-  b <- exp((b0 + b1 * (1 - (h/h_top))^b2 + b3 * (h/h_top)^(b4 * h_top) + b5 * (dbh) + b6 * h_top/dbh)) * d
+  b <- b0 + b1 * dbh + b2 * d
 
 
   return(b)
