@@ -33,9 +33,6 @@ volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=T
     stop("h_vol_upper must be of length 1 of same length as dbh.")
   }
 
-  #replace NA with h_top
-  h_vol_upper[is.na(h_vol_upper)]<-h_top[is.na(h_vol_upper)]
-
   if(length(h_vol_lower)==1) {
       h_vol_lower<-rep(h_vol_lower,length(dbh))
   } else if (length(h_vol_lower)!=length(dbh)){
