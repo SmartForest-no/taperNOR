@@ -17,7 +17,7 @@
 #' @export
 
 
-volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=TRUE){
+volume<-function(dbh,h_top,h_vol_lower=0.01*h_top,h_vol_upper=NA,sp="spruce",with_bark=TRUE){
 
   if(class(dbh)!="numeric"|class(h_top)!="numeric"|class(h_vol_lower)!="numeric"){
     stop("dbh, h_top and h_vol_lower must be numeric.")
@@ -38,9 +38,6 @@ volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=T
   } else if (length(h_vol_lower)!=length(dbh)){
     stop("h_vol_lower must be of length 1 of same length as dbh.")
   }
-  
-  #replace NA with 0.1*h_top
-  h_vol_lower[is.na(h_vol_lower)]<-0.1*h_top[is.na(h_vol_lower)]
   
   if(any(h_vol_lower>h_vol_upper)){
     stop("h_vol_lower must not be larger than h_vol_upper.")
