@@ -19,6 +19,10 @@
 
 volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=TRUE){
 
+  if (is.na(h_vol_lower)) {
+    h_vol_lower <- h_top * 0.01
+  }
+  
   if(class(dbh)!="numeric"|class(h_top)!="numeric"|class(h_vol_lower)!="numeric"){
     stop("dbh, h_top and h_vol_lower must be numeric.")
   }
@@ -33,10 +37,6 @@ volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=T
     stop("h_vol_upper must be of length 1 of same length as dbh.")
   }
 
-  if (is.na(h_vol_lower)) {
-    h_vol_lower <- h_top * 0.01
-  }
-  
   if(length(h_vol_lower)==1) {
       h_vol_lower<-rep(h_vol_lower,length(dbh))
   } else if (length(h_vol_lower)!=length(dbh)){
