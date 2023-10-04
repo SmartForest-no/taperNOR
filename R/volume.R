@@ -19,6 +19,8 @@
 
 volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=TRUE){
 
+  h_vol_upper[is.na(h_vol_upper)]<-h_top[is.na(h_vol_upper)]
+  
   if (is.na(h_vol_lower)) {
     h_vol_lower <- h_top * 0.01
   }
