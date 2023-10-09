@@ -2,14 +2,14 @@
 % Please edit documentation in R/hfromd.R
 \name{hfromd}
 \alias{hfromd}
-\title{Estimate tree height from diameters}
+\title{Estimate tree height above ground from diameters}
 \usage{
 hfromd(d, h, sp = "spruce", output = "h", grd_search = F)
 }
 \arguments{
 \item{d}{diameters (cm).}
 
-\item{h}{height of diameter measurements (m).}
+\item{h}{height above ground of diameter measurements (m).}
 
 \item{sp}{species}
 
@@ -18,10 +18,10 @@ hfromd(d, h, sp = "spruce", output = "h", grd_search = F)
 \item{grd_search}{if TRUE optimization is run on a matrix of initial parameters. The result of the best fit is returned. Might give better result at cost of performance.}
 }
 \value{
-Timber volume in m.
+Tree height above ground (m).
 }
 \description{
-Estimates tree height from diameters using optimization of the taper function. Height is distance from stem base.
+Estimates tree height above ground from diameters using optimization of the taper function.
 }
 \examples{
 

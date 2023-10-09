@@ -7,21 +7,21 @@
 taperNOR(h, dbh, h_top, sp = "spruce", with_bark = TRUE)
 }
 \arguments{
-\item{h}{heights where to return diameters (m).}
+\item{h}{heights above ground where to return diameters (m).}
 
-\item{dbh}{diameter at breast height over bark (cm).}
+\item{dbh}{diameter at breast height (1.3 m above ground) over bark (cm).}
 
-\item{h_top}{tree height (m).}
+\item{h_top}{tree height above ground (m).}
 
 \item{sp}{species ('spruce','pine' or 'birch'; 1:3).}
 
-\item{with_bark}{estimate diameter over (TRUE, default) or under bark (FALSE).}
+\item{with_bark}{estimate diameter over (TRUE, default) or under bark (FALSE)}
 }
 \value{
 diameters at h (cm).
 }
 \description{
-The taper model is based on Kozak 1988. Height is distance from stem base.
+The taper model is based on Kozak A. 1988. A variable-exponent taper equation. Can J For Res. 18(11):1363–1368.
 }
 \examples{
 taperNOR(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=TRUE)

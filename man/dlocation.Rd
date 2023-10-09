@@ -7,21 +7,21 @@
 dlocation(dbh, h_top, d, sp = "spruce", with_bark = TRUE)
 }
 \arguments{
-\item{dbh}{diameter at breast height over bark (cm)}
+\item{dbh}{diameter at breast height (1.3 m above ground) over bark (cm).}
 
-\item{h_top}{height of diameter measurements (m)}
+\item{h_top}{height above ground of diameter measurements (m).}
 
-\item{d}{diameters (cm)}
+\item{d}{diameters (cm).}
 
-\item{sp}{species}
+\item{sp}{species.}
 
 \item{with_bark}{diameter with (TRUE, default) or without bark (FALSE).}
 }
 \value{
-Timber volume (m^3).
+Height of given diameter (m).
 }
 \description{
-Estimates heights of given diameters along the stem using optimization of the taper function. Height is distance from stem base.
+Estimates heights of given diameters along the stem using optimization of the taper function.
 }
 \examples{
 

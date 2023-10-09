@@ -9,19 +9,20 @@ barkNOR(d, h, dbh, h_top, sp = "spruce")
 \arguments{
 \item{d}{diameter (cm).}
 
-\item{h}{height (m).}
+\item{h}{height above ground (m).}
 
-\item{dbh}{diameter at breast height (cm).}
+\item{dbh}{diameter at breast height, 1.3 m above ground (cm).}
 
-\item{h_top}{tree height (m).}
+\item{h_top}{tree height above ground (m).}
 
-\item{sp}{species ('spruce','pine' or 'birch'; 1:3).}
+\item{sp}{species ('spruce','pine' or 'birch'; 1:3)}
 }
 \value{
-double bark thickness at h (mm).
+double bark thickness (mm) at height h with diameter d.
 }
 \description{
-The bark models are based on Gordon (1983) via Stängle (2016). Height is distance from stem base.
+The bark models are based on Hannrup B. 2004. Funktioner för skattning av barkens tjocklek hos tall och gran vid avverkning med skördare. (Functions for prediction of bark thickness of Norway spruce and Scots pine at CTL-harvesting). Arbetsrapport 575. Skogforsk, Uppsala.
+via Stängle et al. 2017. Comparison of models for estimating bark thickness of Picea abies in southwest Germany: the role of tree, stand, and environmental factors. Ann For Sci. 74(1):16.
 }
 \examples{
 barkNOR(d=30, h=1,dbh=25,h_top=30,sp="pine")

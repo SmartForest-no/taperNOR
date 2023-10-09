@@ -7,18 +7,20 @@
 volume(
   dbh,
   h_top,
-  h_vol_lower = 0,
+  h_vol_lower = NA,
   h_vol_upper = NA,
   sp = "spruce",
   with_bark = TRUE
 )
 }
 \arguments{
-\item{dbh}{numeric vector of diameters at breast height (cm).}
+\item{dbh}{numeric vector of diameters at breast height, 1.3 m above ground (cm).}
 
-\item{h_top}{numeric vector of tree heights (m).}
+\item{h_top}{numeric vector of tree heights above ground (m).}
 
-\item{h_vol_lower, h_vol_upper}{numeric vectors of heights between stem volume is calculated (m). NA in h_vol_upper is replaced by h_top.}
+\item{h_vol_lower}{numeric vector of lower height for stem volume calculation (m). NA in h_vol_lower is replaced by stump height (1\% of h_top).}
+
+\item{h_vol_upper}{numeric vector of upper height for stem volume calculation (m). NA in h_vol_upper is replaced by h_top.}
 
 \item{sp}{species.}
 
@@ -28,12 +30,12 @@ volume(
 Timber volume (m^3).
 }
 \description{
-Calculate volume from taper model by integerating the taper function. Height is distance from stem base.
+Calculates volume from taper model by integrating the taper function.
 }
 \examples{
 volume(20, 30)
 volume(dbh=c(20,25,30), h_top=c(30,25,37))
 volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_lower=seq(0,30,3))
 volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3))
-volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3),with_bark=FALSE)
+volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_lower=0,h_vol_upper=seq(0,30,3),with_bark=FALSE)
 }

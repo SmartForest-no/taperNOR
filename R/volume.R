@@ -4,7 +4,8 @@
 #'
 #' @param dbh numeric vector of diameters at breast height, 1.3 m above ground (cm).
 #' @param h_top numeric vector of tree heights above ground (m).
-#' @param h_vol_lower,h_vol_upper numeric vectors of heights between stem volume is calculated (m). Default stump height (h_vol_lower) is 1% of h_top. NA in h_vol_upper is replaced by h_top.
+#' @param h_vol_lower numeric vector of lower height for stem volume calculation (m). NA in h_vol_lower is replaced by stump height (1\% of h_top).
+#' @param h_vol_upper numeric vector of upper height for stem volume calculation (m). NA in h_vol_upper is replaced by h_top.
 #' @param sp species.
 #' @param with_bark calculate volume over (TRUE, default) or under bark (FALSE).
 #' @return Timber volume (m^3).
@@ -13,20 +14,19 @@
 #' volume(dbh=c(20,25,30), h_top=c(30,25,37))
 #' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_lower=seq(0,30,3))
 #' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3))
-#' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_upper=seq(0,30,3),with_bark=FALSE)
+#' volume(dbh=rep(25,11), h_top=rep(30,11),h_vol_lower=0,h_vol_upper=seq(0,30,3),with_bark=FALSE)
 #' @export
 
 
 volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=TRUE){
 
-  h_vol_upper[is.na(h_vol_upper)]<-h_top[is.na(h_vol_upper)]
-  
-  if (is.na(h_vol_lower)) {
-    h_vol_lower <- h_top * 0.01
-  }
-  
-  if(class(dbh)!="numeric"|class(h_top)!="numeric"|class(h_vol_lower)!="numeric"){
-    stop("dbh, h_top and h_vol_lower must be numeric.")
+  if(
+    class(dbh)!="numeric"|
+    class(h_top)!="numeric"|
+    (class(h_vol_lower)!="numeric" & !all(is.na(h_vol_lower)))|
+    (class(h_vol_upper)!="numeric" & !all(is.na(h_vol_upper)))
+  ){
+    stop("dbh, h_top, h_vol_lower and h_vol_upper must be numeric.")
   }
 
   if(length(dbh)!=length(h_top)) {
@@ -38,15 +38,19 @@ volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=T
   } else if (length(h_vol_upper)!=length(dbh)){
     stop("h_vol_upper must be of length 1 of same length as dbh.")
   }
+  h_vol_upper[is.na(h_vol_upper)]<-h_top[is.na(h_vol_upper)]
 
   if(length(h_vol_lower)==1) {
-      h_vol_lower<-rep(h_vol_lower,length(dbh))
+    h_vol_lower<-rep(h_vol_lower,length(dbh))
   } else if (length(h_vol_lower)!=length(dbh)){
     stop("h_vol_lower must be of length 1 of same length as dbh.")
   }
-  
+  h_vol_lower[is.na(h_vol_lower)]<-h_top[is.na(h_vol_lower)]* 0.01
+
+
   if(any(h_vol_lower>h_vol_upper)){
-    stop("h_vol_lower must not be larger than h_vol_upper.")
+    h_vol_lower[h_vol_lower<h_vol_upper]<-h_vol_upper[h_vol_lower<h_vol_upper]
+    warning("h_vol_lower must not be larger than h_vol_upper. h_vol_lower has been set to h_vol_upper.")
   }
 
   if(length(sp)==1) {

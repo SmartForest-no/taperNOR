@@ -7,13 +7,13 @@
 kublin_nor(Hx = NULL, Hm, Dm, mHt, sp = 1, Dx = NULL, ...)
 }
 \arguments{
-\item{Hx}{height where to return diameters (m)}
+\item{Hx}{height above ground where to return diameters (m)}
 
-\item{Hm}{height of measured diameters (m)}
+\item{Hm}{height above ground of measured diameters (m)}
 
 \item{Dm}{measured diameters (cm)}
 
-\item{mHt}{measured tree height (m)}
+\item{mHt}{measured tree height (m) above ground}
 
 \item{sp}{species}
 
@@ -25,5 +25,9 @@ kublin_nor(Hx = NULL, Hm, Dm, mHt, sp = 1, Dx = NULL, ...)
 When Hx is given: diameters at Hx (cm). When Dx is given: heights where d=Dx (m).
 }
 \description{
-Allows the use of multiple diameters measured at various points along the stem to estimate taper.Height is distance from stem base.
+Based on Kublin et al. 2013. A flexible stem taper and volume prediction method based on mixed-effects B-spline regression. Eur J For Res. 132(5-6):983–997
+and code in Kublin & Breidenbach (https://CRAN.R-project.org/package=TapeR).
+}
+\details{
+Allows the use of multiple diameters measured at various points along the stem to estimate taper.
 }
