@@ -8,7 +8,7 @@
 #' @param dbh diameter at breast height, 1.3 m above ground (cm).
 #' @param h_top tree height above ground (m).
 #' @param sp species ('spruce','pine' or 'birch'; 1:3)
-#' @return double bark thickness (mm) at height h with diameter d.
+#' @return double bark thickness (cm) at height h with diameter d.
 #' @examples
 #' barkNOR(d=30, h=1,dbh=25,h_top=30,sp="pine")
 #'
@@ -16,8 +16,9 @@
 #' bark<-barkNOR(d=taper, h=(0:300)/10,dbh=25,h_top=30,sp="pine")
 #' plot((0:300)/10,taper,type="l",col="brown",xlab="height (m)",ylab="taper/bark (cm)")
 #' points((0:300)/10,taper-bark/10,type="l",col="green")
+#' legend("topright",legend = c("taper","bark"),fill=c("brown","green"),border=NA)
 #'
-#' plot((0:300)/10,bark,type="l",ylab="bark (mm)",xlab="height (m)")
+#' points((0:300)/10,bark,type="l",ylab="bark (cm)",xlab="height (m)")
 #' @export
 
 
