@@ -18,7 +18,7 @@ barkNOR(d, h, dbh, h_top, sp = "spruce")
 \item{sp}{species ('spruce','pine' or 'birch'; 1:3)}
 }
 \value{
-double bark thickness (mm) at height h with diameter d.
+double bark thickness (cm) at height h with diameter d.
 }
 \description{
 The bark models are based on Hannrup B. 2004. Funktioner för skattning av barkens tjocklek hos tall och gran vid avverkning med skördare. (Functions for prediction of bark thickness of Norway spruce and Scots pine at CTL-harvesting). Arbetsrapport 575. Skogforsk, Uppsala.
@@ -31,6 +31,7 @@ taper<-taperNOR(h=(0:300)/10,dbh=25,h_top=30,sp="pine")
 bark<-barkNOR(d=taper, h=(0:300)/10,dbh=25,h_top=30,sp="pine")
 plot((0:300)/10,taper,type="l",col="brown",xlab="height (m)",ylab="taper/bark (cm)")
 points((0:300)/10,taper-bark/10,type="l",col="green")
+legend("topright",legend = c("taper","bark"),fill=c("brown","green"),border=NA)
 
-plot((0:300)/10,bark,type="l",ylab="bark (mm)",xlab="height (m)")
+points((0:300)/10,bark,type="l",ylab="bark (cm)",xlab="height (m)")
 }
