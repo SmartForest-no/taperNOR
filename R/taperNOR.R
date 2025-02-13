@@ -1,16 +1,47 @@
-#' Taper model for spruce, pine, and birch for Norway
+#' Taper model for spruce, pine, and birch in Norway
 #'
-#' The taper model is based on Kozak A. 1988. A variable-exponent taper equation. Can J For Res. 18(11):1363–1368.
+#' Computes stem diameters (taper) along the bole of spruce, pine, and birch in Norway. 
+#' The function implements the taper equations described in Hansen et al. (2023), 
+#' based on Kozak’s (1988) variable-exponent taper equation.
 #'
-#' @param h heights above ground where to return diameters (m).
-#' @param dbh diameter at breast height (1.3 m above ground) over bark (cm).
-#' @param h_top tree height above ground (m).
-#' @param sp species ('spruce','pine' or 'birch'; 1:3).
-#' @param with_bark estimate diameter over (TRUE, default) or under bark (FALSE)
-#' @return diameters at h (cm).
+#' The original article by Hansen et al. (2023) contains minor errata 
+#' (e.g., missing brackets, the use of `Log` instead of `ln`, and a sign error at `b7` 
+#' in the pine taper model), but these do not affect the present implementation.
+#'
+#' @references 
+#' Hansen, E., Rahlf, J., Astrup, R., & Gobakken, T. (2023). 
+#' Taper, volume, and bark thickness models for spruce, pine, and birch in Norway. 
+#' *Scandinavian Journal of Forest Research*, \doi{10.1080/02827581.2023.2243821}.
+#'
+#' Kozak, A. (1988). A variable-exponent taper equation. 
+#' *Canadian Journal of Forest Research*, 18(11), 1363–1368.
+#'
+#' @param h A numeric vector of heights above ground (in meters) at which to return diameters.
+#' @param dbh Diameter at breast height (1.3 m above ground), over bark (in centimeters).
+#' @param h_top Total tree height (in meters).
+#' @param sp Character or numeric value indicating the species; recognized inputs include:
+#'   \itemize{
+#'     \item \strong{spruce}: "spruce", "s", "gran", "g", "1"
+#'     \item \strong{pine}: "pine", "p", "furu", "f", "2"
+#'     \item \strong{birch}: "birch", "b", "bjørk", "bjork", "bj", "lauv", "l", "3"
+#'   }
+#'   Defaults to \code{"spruce"}.
+#' @param with_bark Logical. If \code{TRUE} (the default), returns diameter over bark. 
+#'   If \code{FALSE}, diameter under bark is computed by subtracting bark thickness via 
+#'   [barkNOR()]. 
+#'
+#' @return A numeric vector of diameters (in centimeters) at each height in \code{h}.
+#'
+#' @seealso [barkNOR()] for details on bark thickness subtraction.
+#'
 #' @examples
-#' taperNOR(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=TRUE)
-#' taperNOR(h=1:30,dbh=20,h_top=30,sp="pine",with_bark=FALSE)
+#' # Example usage:
+#' # Calculate taper for pine, at heights 1:30 m, dbh = 20 cm, total height = 30 m:
+#' taperNOR(h = 1:30, dbh = 20, h_top = 30, sp = "pine", with_bark = TRUE)
+#'
+#' # To get diameters under bark:
+#' taperNOR(h = 1:30, dbh = 20, h_top = 30, sp = "pine", with_bark = FALSE)
+#'
 #' @export
 
 
