@@ -23,10 +23,13 @@ test_that("kublin_nor returns one height per element for multi-element Dx", {
 })
 
 test_that("kublin_nor still works for Hx input", {
-  Dx_vals <- kublin_nor(Hx = c(1.3, 5, 10), Hm = c(1.3, 5), Dm = c(30, 22), mHt = 25, sp = 1)
+  # The Hx branch returns the full TapeR::E_DHx_HmDm_HT.f() list; the
+  # predicted diameters are in $DHx, one per element of Hx.
+  res <- kublin_nor(Hx = c(1.3, 5, 10), Hm = c(1.3, 5), Dm = c(30, 22), mHt = 25, sp = 1)
 
-  expect_length(Dx_vals, 3)
-  expect_type(Dx_vals, "double")
+  expect_type(res, "list")
+  expect_length(res$DHx, 3)
+  expect_type(res$DHx, "double")
 })
 
 test_that("kublin_nor errors when neither or both of Hx and Dx are given", {

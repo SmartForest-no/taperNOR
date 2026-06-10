@@ -44,7 +44,7 @@ plot_taper<-function(dbh,h_top,sp="spruce",with_bark=TRUE){
     sp<-rep(sp,length(dbh))
   }
   if(length(with_bark)==1){
-    sp<-rep(with_bark,length(dbh))
+    with_bark<-rep(with_bark,length(dbh))
   }
 
   plotmat<-cbind(dbh,h_top,sp_num,1:length(dbh),with_bark)
