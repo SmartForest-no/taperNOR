@@ -38,8 +38,9 @@ def bark_nor(
         sp: Species, see :func:`taper_nor.coefficients.normalize_species`.
 
     Returns:
-        Bark thickness (mm) for each element of ``d``.
+        Bark thickness (mm) for each element of ``d``. Unrounded, matching
+        R's ``barkNOR()``.
     """
     sp_n = normalize_species(sp)
     result = _bark(d, h, dbh, h_top, sp_n)
-    return [round(float(x), 4) for x in np.atleast_1d(result)]
+    return [float(x) for x in np.atleast_1d(result)]

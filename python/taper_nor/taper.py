@@ -73,8 +73,9 @@ def taper_nor(
             If ``False``, subtract bark thickness via :func:`taper_nor.bark.bark_nor`.
 
     Returns:
-        Diameter (cm) for each element of ``h``.
+        Diameter (cm) for each element of ``h``. Unrounded, matching R's
+        ``taperNOR()``.
     """
     sp_n = normalize_species(sp)
     result = _taper(h, dbh, h_top, sp_n, with_bark)
-    return [round(float(x), 4) for x in np.atleast_1d(result)]
+    return [float(x) for x in np.atleast_1d(result)]

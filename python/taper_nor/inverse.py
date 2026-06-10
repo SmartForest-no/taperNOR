@@ -28,10 +28,20 @@ def hfromd(d: Sequence[float], h: Sequence[float], sp: str = "spruce") -> dict[s
 
     Returns:
         A dict with keys ``"h_top"`` (estimated total height, m) and
-        ``"dbh"`` (estimated diameter at breast height, cm).
+        ``"dbh"`` (estimated diameter at breast height, cm). Unrounded,
+        matching R's ``hfromd()``.
 
     Raises:
         ValueError: If all diameter measurements have ``h < 0.5``.
+
+    Note:
+        R's ``hfromd()`` defaults to a single optimization from a fixed
+        starting point (with fallbacks), only falling back to a 12x8 grid
+        search of starting points if that fails or ``grd_search=TRUE`` is
+        passed. This port always runs that 12x8 grid search (i.e. it
+        corresponds to R's ``grd_search=TRUE``), which is slower but more
+        robust. R's ``output=`` parameter ("h"/"d"/"all") is not exposed;
+        both estimates are always returned.
     """
     sp_n = normalize_species(sp)
     d_arr = np.asarray(d, dtype=float)
@@ -60,7 +70,7 @@ def hfromd(d: Sequence[float], h: Sequence[float], sp: str = "spruce") -> dict[s
             if best is None or res.fun < best.fun:
                 best = res
 
-    return {"h_top": round(float(best.x[0]), 4), "dbh": round(float(best.x[1]), 4)}
+    return {"h_top": float(best.x[0]), "dbh": float(best.x[1])}
 
 
 def dlocation(

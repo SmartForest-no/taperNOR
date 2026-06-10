@@ -65,6 +65,25 @@ def test_volume_length_mismatch_raises():
         volume(dbh=[30, 25], h_top=[25])
 
 
+def test_volume_per_tree_species_and_bark():
+    # Per-tree sp/with_bark should match calling volume() once per tree.
+    dbh, h_top = [30, 25], [25, 20]
+    sp, with_bark = ["spruce", "pine"], [True, False]
+
+    combined = volume(dbh=dbh, h_top=h_top, sp=sp, with_bark=with_bark)
+    individual = [
+        volume(dbh=[d], h_top=[ht], sp=[s], with_bark=[wb])[0]
+        for d, ht, s, wb in zip(dbh, h_top, sp, with_bark)
+    ]
+
+    assert combined == pytest.approx(individual)
+
+
+def test_volume_sp_length_mismatch_raises():
+    with pytest.raises(ValueError):
+        volume(dbh=[30, 25], h_top=[25, 20], sp=["spruce"])
+
+
 def test_dlocation_inverts_taper():
     dbh, h_top, sp = 30.0, 25.0, "spruce"
     target_d = [25.0, 15.0]
