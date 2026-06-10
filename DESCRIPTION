@@ -1,14 +1,22 @@
 Package: taperNOR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Taper, Volume and Bark Thickness Models for Spruce, Pine and Birch in Norway
 Version: 0.1.0
-Author: Johannes Rahlf, Endre Hofstad Hansen
-Maintainer: Johannes Rahlf <johannes.rahlf@nibio.no>
-Description: Taper models for Norway
-    for the main tree species spruce, pine and birch.
+Authors@R: c(
+    person("Johannes", "Rahlf", email = "johannes.rahlf@nibio.no", role = c("aut", "cre")),
+    person(c("Endre", "Hofstad"), "Hansen", role = "aut"))
+Description: Stem taper, bark thickness, and volume models for the main
+    Norwegian tree species (Norway spruce, Scots pine, and birch), based on
+    Hansen et al. (2023) <doi:10.1080/02827581.2023.2243821> and the
+    correction <doi:10.1080/02827581.2024.2358467>. Provides functions to
+    predict stem diameter along the bole, bark thickness, and stem volume by
+    numerical integration of the taper curve, and to invert these
+    relationships (e.g. estimating height and diameter at breast height from
+    measured diameters).
 License: MIT + file LICENSE
+URL: https://github.com/SmartForest-no/taperNOR
+BugReports: https://github.com/SmartForest-no/taperNOR/issues
 Encoding: UTF-8
-LazyData: true
 Imports:
     TapeR
 RoxygenNote: 7.3.2

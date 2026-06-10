@@ -26,7 +26,7 @@ hfromd<-function(d,h,sp="spruce",output="h",grd_search=F){
   result<-try(.hfromd_optim(st,h,d,sp),T)
 
 
-  if(class(result)=="try-error"){
+  if(inherits(result,"try-error")){
     st<-
       c(
         stats::predict(stats::lm(d~h),newdata = data.frame(h=1.3)),
@@ -35,7 +35,7 @@ hfromd<-function(d,h,sp="spruce",output="h",grd_search=F){
     result<-try(.hfromd_optim(st,h,d,sp),T)
   }
 
-  if(class(result)=="try-error"|grd_search){
+  if(inherits(result,"try-error")|grd_search){
     st_df<-expand.grid(st_h=seq(1.5,45.5,4),st_d=seq(10,80,10))
     st_df$optim<-apply( st_df,1,function(x){try(.hfromd_optim(x,h,d,sp)$value,silent = T)})
     st_df$optim[!grepl("\\d",st_df$optim)]<-NA
@@ -43,7 +43,7 @@ hfromd<-function(d,h,sp="spruce",output="h",grd_search=F){
     result<-try(.hfromd_optim(st_df[which.min(st_df$optim),1:2],h,d,sp))
   }
 
-  if(class(result)=="try-error") return(.hfromd_optim(st,h,d,sp))
+  if(inherits(result,"try-error")) return(.hfromd_optim(st,h,d,sp))
 
   names(result$par)<-c("h","d")
 
