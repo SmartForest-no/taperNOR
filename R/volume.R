@@ -21,10 +21,10 @@
 volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=TRUE){
 
   if(
-    class(dbh)!="numeric"|
-    class(h_top)!="numeric"|
-    (class(h_vol_lower)!="numeric" & !all(is.na(h_vol_lower)))|
-    (class(h_vol_upper)!="numeric" & !all(is.na(h_vol_upper)))
+    !is.numeric(dbh)|
+    !is.numeric(h_top)|
+    (!is.numeric(h_vol_lower) & !all(is.na(h_vol_lower)))|
+    (!is.numeric(h_vol_upper) & !all(is.na(h_vol_upper)))
   ){
     stop("dbh, h_top, h_vol_lower and h_vol_upper must be numeric.")
   }
@@ -49,7 +49,7 @@ volume<-function(dbh,h_top,h_vol_lower=NA,h_vol_upper=NA,sp="spruce",with_bark=T
 
 
   if(any(h_vol_lower>h_vol_upper)){
-    h_vol_lower[h_vol_lower<h_vol_upper]<-h_vol_upper[h_vol_lower<h_vol_upper]
+    h_vol_lower[h_vol_lower>h_vol_upper]<-h_vol_upper[h_vol_lower>h_vol_upper]
     warning("h_vol_lower must not be larger than h_vol_upper. h_vol_lower has been set to h_vol_upper.")
   }
 
