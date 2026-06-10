@@ -15,7 +15,11 @@ kublin_nor(Hx = NULL, Hm, Dm, mHt, sp = 1, Dx = NULL, ...)
 
 \item{mHt}{measured tree height (m) above ground}
 
-\item{sp}{species}
+\item{sp}{species. \strong{Only spruce is currently supported}
+("spruce", "s", "gran", "g", "1"); the Kublin (TapeR) mixed-effects model
+has only been fitted for spruce in this package. Pine and birch raise an
+error - use \code{\link{taperNOR}} for those species, or supply a fitted
+\code{par.lme}.}
 
 \item{Dx}{or diameters (cm) for which to return a height}
 
