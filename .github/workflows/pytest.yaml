@@ -1,0 +1,40 @@
+# Runs the Python package test suite (python/taper_nor) with pytest.
+on:
+  push:
+    branches: [main, master]
+    paths: ['python/**', '.github/workflows/pytest.yaml']
+  pull_request:
+    branches: [main, master]
+    paths: ['python/**', '.github/workflows/pytest.yaml']
+
+name: pytest.yaml
+
+permissions: read-all
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+
+    name: python ${{ matrix.python-version }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.9', '3.11', '3.13']
+
+    defaults:
+      run:
+        working-directory: python
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package with test dependencies
+        run: pip install ".[test]"
+
+      - name: Run pytest
+        run: pytest -q

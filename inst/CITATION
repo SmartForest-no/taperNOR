@@ -1,0 +1,31 @@
+citHeader(
+  "To cite taperNOR in publications, please cite the underlying models:"
+)
+
+bibentry(
+  bibtype  = "Article",
+  title    = "Taper, volume, and bark thickness models for spruce, pine, and birch in Norway",
+  author   = c(
+    person("Endre", "Hansen"),
+    person("Johannes", "Rahlf"),
+    person("Rasmus", "Astrup"),
+    person("Terje", "Gobakken")
+  ),
+  journal  = "Scandinavian Journal of Forest Research",
+  year     = "2023",
+  doi      = "10.1080/02827581.2023.2243821"
+)
+
+bibentry(
+  bibtype  = "Article",
+  title    = "Correction to: Taper, volume, and bark thickness models for spruce, pine, and birch in Norway",
+  author   = c(
+    person("Endre", "Hansen"),
+    person("Johannes", "Rahlf"),
+    person("Rasmus", "Astrup"),
+    person("Terje", "Gobakken")
+  ),
+  journal  = "Scandinavian Journal of Forest Research",
+  year     = "2024",
+  doi      = "10.1080/02827581.2024.2358467"
+)
