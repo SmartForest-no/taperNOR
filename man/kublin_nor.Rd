@@ -23,6 +23,9 @@ kublin_nor(Hx = NULL, Hm, Dm, mHt, sp = 1, Dx = NULL, ...)
 }
 \value{
 When Hx is given: diameters at Hx (cm). When Dx is given: heights where d=Dx (m).
+\code{TapeR::E_HDx_HmDm_HT.f()} only root-finds a single height per call, so when
+\code{Dx} has length > 1 it is called once per element of \code{Dx} and the
+resulting heights are combined into a vector of the same length as \code{Dx}.
 }
 \description{
 Based on Kublin et al. 2013. A flexible stem taper and volume prediction method based on mixed-effects B-spline regression. Eur J For Res. 132(5-6):983–997

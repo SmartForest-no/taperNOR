@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taper-nor"
+version = "0.1.0"
+description = "Taper, bark, volume, and inverse taper models for spruce, pine, and birch in Norway"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Johannes Rahlf" },
+    { name = "Endre Hofstad Hansen" },
+]
+dependencies = [
+    "numpy",
+    "scipy",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["taper_nor*"]

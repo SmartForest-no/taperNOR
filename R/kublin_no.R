@@ -13,6 +13,9 @@
 #' @param sp species
 #' @param ... parameters handed over to E_DHx_HmDm_HT.f or E_HDx_HmDm_HT.f
 #' @return When Hx is given: diameters at Hx (cm). When Dx is given: heights where d=Dx (m).
+#'   \code{TapeR::E_HDx_HmDm_HT.f()} only root-finds a single height per call, so when
+#'   \code{Dx} has length > 1 it is called once per element of \code{Dx} and the
+#'   resulting heights are combined into a vector of the same length as \code{Dx}.
 #' @export
 
 kublin_nor <- function(Hx=NULL,Hm,Dm,mHt,sp=1,Dx=NULL,...) {
@@ -25,7 +28,13 @@ kublin_nor <- function(Hx=NULL,Hm,Dm,mHt,sp=1,Dx=NULL,...) {
     par_lme<-kublin_par_lme_spruce
   }
   if(is.null(Hx)&!is.null(Dx)){
-    TapeR::E_HDx_HmDm_HT.f(Dx = Dx,Hm = Hm,Dm = Dm,mHt,par.lme = par_lme,...)
+    if(length(Dx)>1){
+      vapply(Dx, function(Dx_i){
+        TapeR::E_HDx_HmDm_HT.f(Dx = Dx_i,Hm = Hm,Dm = Dm,mHt,par.lme = par_lme,...)
+      }, FUN.VALUE = numeric(1))
+    } else {
+      TapeR::E_HDx_HmDm_HT.f(Dx = Dx,Hm = Hm,Dm = Dm,mHt,par.lme = par_lme,...)
+    }
   } else if ((!is.null(Hx))&is.null(Dx)){
     TapeR::E_DHx_HmDm_HT.f(Hx = Hx,Hm = Hm,Dm = Dm,mHt,par.lme = par_lme,...)
   } else {
