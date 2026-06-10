@@ -43,3 +43,36 @@ test_that("kublin_nor errors when neither or both of Hx and Dx are given", {
     "Either Hx or Dx must be given"
   )
 })
+
+test_that("kublin_nor accepts spruce via its aliases", {
+  # Numeric 1 and the string aliases should all resolve to the spruce model.
+  ref <- kublin_nor(Dx = 25, Hm = c(1.3, 5), Dm = c(30, 22), mHt = 25, sp = 1)
+
+  for (alias in c("spruce", "s", "gran", "g", "1")) {
+    expect_equal(
+      kublin_nor(Dx = 25, Hm = c(1.3, 5), Dm = c(30, 22), mHt = 25, sp = alias),
+      ref
+    )
+  }
+})
+
+test_that("kublin_nor errors for pine and birch (only spruce is fitted)", {
+  # Regression: pine/birch previously fell through to the spruce model
+  # silently. They must now error rather than return spruce-based results.
+  # "bjork" (ASCII) covers the birch path; the non-ASCII Norwegian alias is
+  # exercised by the function but kept out of this test to keep the source ASCII.
+  for (alias in c("pine", "p", "furu", "f", "2",
+                  "birch", "b", "bjork", "bj", "lauv", "l", "3")) {
+    expect_error(
+      kublin_nor(Dx = 25, Hm = c(1.3, 5), Dm = c(30, 22), mHt = 25, sp = alias),
+      "only supports spruce"
+    )
+  }
+})
+
+test_that("kublin_nor errors for an unrecognized species", {
+  expect_error(
+    kublin_nor(Dx = 25, Hm = c(1.3, 5), Dm = c(30, 22), mHt = 25, sp = "oak"),
+    "sp must indicate spruce"
+  )
+})

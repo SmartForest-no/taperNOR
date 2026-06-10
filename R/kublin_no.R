@@ -10,7 +10,11 @@
 #' @param Hm height above ground of measured diameters (m)
 #' @param Dm measured diameters (cm)
 #' @param mHt measured tree height (m) above ground
-#' @param sp species
+#' @param sp species. \strong{Only spruce is currently supported}
+#'   ("spruce", "s", "gran", "g", "1"); the Kublin (TapeR) mixed-effects model
+#'   has only been fitted for spruce in this package. Pine and birch raise an
+#'   error - use \code{\link{taperNOR}} for those species, or supply a fitted
+#'   \code{par.lme}.
 #' @param ... parameters handed over to E_DHx_HmDm_HT.f or E_HDx_HmDm_HT.f
 #' @return When Hx is given: diameters at Hx (cm). When Dx is given: heights where d=Dx (m).
 #'   \code{TapeR::E_HDx_HmDm_HT.f()} only root-finds a single height per call, so when
@@ -20,12 +24,14 @@
 
 kublin_nor <- function(Hx=NULL,Hm,Dm,mHt,sp=1,Dx=NULL,...) {
 
-  if(sp==1){
+  sp_norm<-tolower(as.character(sp))
+  if(sp_norm%in%c("spruce","s","gran","g","1")){
     par_lme<-kublin_par_lme_spruce
-  } else if(sp==2){
-    par_lme<-kublin_par_lme_spruce
-  } else if(sp==3){
-    par_lme<-kublin_par_lme_spruce
+  } else if(sp_norm%in%c("pine","p","furu","f","2",
+                         "birch","b","bj\u00f8rk","bjork","bj","lauv","l","3")){
+    stop("kublin_nor() currently only supports spruce. The Kublin (TapeR) model has not been fitted for pine or birch in this package; use taperNOR() for those species, or supply a fitted par.lme.")
+  } else {
+    stop("sp must indicate spruce, the only species currently supported by kublin_nor().")
   }
   if(is.null(Hx)&!is.null(Dx)){
     if(length(Dx)>1){
