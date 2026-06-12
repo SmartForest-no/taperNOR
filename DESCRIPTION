@@ -17,11 +17,13 @@ License: MIT + file LICENSE
 URL: https://github.com/SmartForest-no/taperNOR
 BugReports: https://github.com/SmartForest-no/taperNOR/issues
 Encoding: UTF-8
+Language: en-US
 Imports:
     TapeR
 RoxygenNote: 7.3.2
 Depends:
     R (>= 2.10)
 Suggests:
+    spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

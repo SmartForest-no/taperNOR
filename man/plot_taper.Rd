@@ -15,6 +15,10 @@ plot_taper(dbh, h_top, sp = "spruce", with_bark = TRUE)
 
 \item{with_bark}{plot taper curve with (TRUE, default) or without bark (FALSE).}
 }
+\value{
+No return value. Called for its side effect of drawing a taper-curve
+plot on the current graphics device.
+}
 \description{
 Plots the taper curve
 }

@@ -20,6 +20,15 @@
 #'   \code{TapeR::E_HDx_HmDm_HT.f()} only root-finds a single height per call, so when
 #'   \code{Dx} has length > 1 it is called once per element of \code{Dx} and the
 #'   resulting heights are combined into a vector of the same length as \code{Dx}.
+#' @examples
+#' # Spruce stem with diameters of 30 cm at 1.3 m and 22 cm at 5 m above
+#' # ground, and a total height of 25 m. (Only spruce is currently supported.)
+#'
+#' # Height(s) (m) at which the stem reaches 25 and 15 cm in diameter:
+#' kublin_nor(Dx = c(25, 15), Hm = c(1.3, 5), Dm = c(30, 22), mHt = 25, sp = "spruce")
+#'
+#' # Diameters (cm) predicted at 1.3, 5 and 10 m above ground:
+#' kublin_nor(Hx = c(1.3, 5, 10), Hm = c(1.3, 5), Dm = c(30, 22), mHt = 25, sp = "spruce")$DHx
 #' @export
 
 kublin_nor <- function(Hx=NULL,Hm,Dm,mHt,sp=1,Dx=NULL,...) {

@@ -6,6 +6,8 @@
 #' @param h_top tree height above ground (m).
 #' @param sp species
 #' @param with_bark plot taper curve with (TRUE, default) or without bark (FALSE).
+#' @return No return value. Called for its side effect of drawing a taper-curve
+#'   plot on the current graphics device.
 #' @examples
 #'
 #' #one tree
