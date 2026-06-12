@@ -7,3 +7,4 @@
 ^\.gitignore$
 ^.*\.orig$
 ^cran-comments\.md$
+^data-raw$

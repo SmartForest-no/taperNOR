@@ -1,7 +1,7 @@
 Package: taperNOR
 Type: Package
 Title: Taper, Volume and Bark Thickness Models for Spruce, Pine and Birch in Norway
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person("Johannes", "Rahlf", email = "johannes.rahlf@nibio.no", role = c("aut", "cre")),
     person(c("Endre", "Hofstad"), "Hansen", role = "aut"))

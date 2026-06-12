@@ -1,6 +1,6 @@
-## Publication year of version 0.1.0 (released alongside the paper, 2023).
-## Update this when a new package version is released.
-vers <- if (!is.null(meta$Version)) meta$Version else "0.1.0"
+## Publication year of the current package version (0.2.0, 2026).
+## Update both the year below and this note when a new version is released.
+vers <- if (!is.null(meta$Version)) meta$Version else "0.2.0"
 
 bibentry(
   bibtype  = "Manual",
@@ -10,7 +10,7 @@ bibentry(
     person("Johannes", "Rahlf"),
     person(c("Endre", "Hofstad"), "Hansen")
   ),
-  year     = "2023",
+  year     = "2026",
   note     = paste("R package version", vers),
   url      = "https://github.com/SmartForest-no/taperNOR"
 )
