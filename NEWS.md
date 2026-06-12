@@ -1,3 +1,9 @@
+# taperNOR 0.2.0
+
+* `kublin_nor()` now supports Scots pine in addition to Norway spruce, using a
+  pine-specific Kublin (TapeR) mixed-effects model. Birch is still not fitted
+  and continues to raise an informative error.
+
 # taperNOR 0.1.0
 
 * `taperNOR()`, `barkNOR()`, and `volume()` implement the taper, bark
