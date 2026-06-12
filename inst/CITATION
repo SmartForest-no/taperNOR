@@ -1,9 +1,23 @@
-citHeader(
-  "To cite taperNOR in publications, please cite the underlying models:"
+## Year/version are taken from the installed package metadata when available.
+year <- if (!is.null(meta$Date)) sub("-.*", "", meta$Date) else format(Sys.Date(), "%Y")
+vers <- if (!is.null(meta$Version)) meta$Version else "0.1.0"
+
+bibentry(
+  bibtype  = "Manual",
+  header   = "To cite the taperNOR software package:",
+  title    = "{taperNOR}: Taper, Volume and Bark Thickness Models for Spruce, Pine and Birch in Norway",
+  author   = c(
+    person("Johannes", "Rahlf"),
+    person(c("Endre", "Hofstad"), "Hansen")
+  ),
+  year     = year,
+  note     = paste("R package version", vers),
+  url      = "https://github.com/SmartForest-no/taperNOR"
 )
 
 bibentry(
   bibtype  = "Article",
+  header   = "To cite the underlying taper, volume and bark thickness models:",
   title    = "Taper, volume, and bark thickness models for spruce, pine, and birch in Norway",
   author   = c(
     person("Endre", "Hansen"),
